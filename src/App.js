@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 
 import Home from './Home/Home';
-import Tesla from './Tesla/Tesla';
+import Configurator from './Tesla/Configurator';
 
 
 export default function App() {
@@ -18,7 +18,7 @@ export default function App() {
             <Home />
           </Route>
           <Route path="/tesla">
-            <Tesla />
+            <Configurator />
           </Route>
         </Switch>
       </div>
