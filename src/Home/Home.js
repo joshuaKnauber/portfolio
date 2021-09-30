@@ -6,7 +6,7 @@ import {
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="App">
     </div>
   );
 }
