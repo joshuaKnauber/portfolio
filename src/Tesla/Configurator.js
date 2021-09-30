@@ -1,38 +1,41 @@
-import React, {useRef, useState} from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import React, { useRef, useState, Suspense, useEffect } from 'react';
+
+import { Canvas, useFrame, useThree, extend } from '@react-three/fiber';
 import { OrbitControls, Box, Line } from '@react-three/drei';
-import { EffectComposer, DepthOfField, Bloom, Noise, Vignette, ChromaticAberration } from "@react-three/postprocessing"
+import { EffectComposer, DepthOfField, Noise, Bloom, Vignette, ChromaticAberration } from "@react-three/postprocessing"
+import { useLoader } from '@react-three/fiber'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass'
+
 import './Tesla.css';
+import gltfModel from './cybertruck.gltf';
+
+
+function Model() {
+  const result = useLoader(GLTFLoader, gltfModel)
+  return <primitive object={result.scene} />
+}
 
 
 function Scene() {
   
   const box = useRef()
-  const line = useRef()
-
-  let [points, setPoints] = useState([[0,0,0]])
 
   useFrame(() => {
     // box.current.rotation.x += 0.01
     // box.current.rotation.y += 0.01
     // box.current.rotation.z += 0.01
-    const p = points[points.length-1]
-    let newPoints = [...points, [p[0]+(Math.random()-0.5), p[1]+(Math.random()-0.5), p[1]+(Math.random()-0.5)]]
-    if (newPoints.length > 100) {
-      newPoints = newPoints.splice(1)
-    }
-    setPoints(newPoints)
   })
 
   return (
     <>
-      <ambientLight intensity={0.4}/>
-      <spotLight position={[10, 15, 10]} angle={0.3}/>
-      {/* <Box position={[0, 0, 0]} ref={box}>
-        <meshStandardMaterial attach="material" color="red" />
-      </Box> */}
-      <Line points={points} color="#D5F0ED">
-      </Line>
+      <ambientLight intensity={0.7}/>
+      <directionalLight position={[10, 10, 5]} intensity={2} />
+      <directionalLight position={[-10, -10, -5]} intensity={1} />
+      <Suspense fallback={null}>
+        <Model />
+      </Suspense>
     </>
   )
 }
@@ -45,10 +48,9 @@ export default function Configurator() {
       <Scene/>
       <EffectComposer>
         {/* <DepthOfField focusDistance={0} focalLength={0.02} bokehScale={2} height={480} /> */}
-        <Bloom luminanceThreshold={0.7} luminanceSmoothing={0.9} height={300} opacity={3} />
-        {/* <Noise opacity={0.025} /> */}
-        {/* <ChromaticAberration offset={[0.001,0.001]}/> */}
-        {/* <Vignette eskil={false} offset={0.25} darkness={0.75} /> */}
+        {/* <Bloom luminanceThreshold={0.6} luminanceSmoothing={0.4} height={400} opacity={2} /> */}
+        <ChromaticAberration offset={[0.001,0.0]}/>
+        <Vignette eskil={false} offset={0.25} darkness={0.75} />
       </EffectComposer>
     </Canvas>
   );
