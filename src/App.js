@@ -1,6 +1,7 @@
 import React, { useRef, useState, Suspense, useEffect } from 'react';
 import { useSpring, animated } from '@react-spring/three';
 
+import * as THREE from "three";
 import { Canvas, useFrame, useThree, extend } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { EffectComposer, DepthOfField, Noise, Bloom, Vignette, ChromaticAberration } from "@react-three/postprocessing"
@@ -8,28 +9,41 @@ import { EffectComposer, DepthOfField, Noise, Bloom, Vignette, ChromaticAberrati
 import './App.css';
 
 
-function Box() {
-  const [active, setActive] = useState(false)
+function Plane({x=0, y=0, z=0, rot=0}) {
+  return (
+    <mesh position={[x, y, z]} rotation={[0, rot, 0]}>
+      <planeBufferGeometry args={[5, 3]} attach="geometry" />
+      <animated.meshPhongMaterial color={"red"} attach="material"  side={THREE.DoubleSide} />
+    </mesh>
+  )
+}
+
+
+function Rocket() {
+  return (
+    <mesh>
+      <boxBufferGeometry args={[1, 10, 1]} attach="geometry" />
+      <animated.meshPhongMaterial color={"blue"} attach="material" />
+    </mesh>
+  )
+}
+
+
+function Geometry() {
   const [yPos, setYPos] = useState(0)
-  const [yRot, setYRot] = useState(0)
+  const [rocketRot, setRocketRot] = useState(0)
+  const [planeRot, setPlaneRot] = useState(0)
 
-  const { color, pos, rot } = useSpring({
-    color: active ? 'hotpink' : 'white',
-    pos: [0, yPos-5, 0],
-    rot: [0, yRot, 0]
+  const { yPosAnimated, rocketRotAnimated, planeRotAnimated } = useSpring({
+    yPosAnimated: [0, yPos-5, 0],
+    rocketRotAnimated: [0, rocketRot, 0],
+    planeRotAnimated: [0, planeRot, 0],
   })
-
-  const setPointing = (pointing) => {
-    if (pointing) {
-      document.body.classList.add("pointing")
-    } else {
-      document.body.classList.remove("pointing")
-    }
-  }
 
   const onScroll = (evt) => {
     setYPos(yPos => Math.max(yPos + evt.deltaY*0.001, 0))
-    setYRot(yRot => Math.min(yRot - evt.deltaY*0.001, 0))
+    setRocketRot(yRot => Math.min(yRot - evt.deltaY*0.001, 0))
+    setPlaneRot(yRot => Math.min(yRot - evt.deltaY*0.001, 0))
   }
 
   useEffect(() => {
@@ -41,16 +55,18 @@ function Box() {
   }, [])
   
   return (
-    <animated.mesh 
-      position={pos}
-      rotation={rot}
-      onClick={() => setActive(!active)}
-      onPointerEnter={e => setPointing(true)}
-      onPointerOut={e => setPointing(false)}
-    >
-      <boxBufferGeometry args={[1, 10, 1]} attach="geometry" />
-      <animated.meshPhongMaterial color={color} attach="material" />
-    </animated.mesh>
+    <group>
+
+      <animated.group position={yPosAnimated} rotation={rocketRotAnimated}>
+        <Rocket />
+      </animated.group>
+
+      <animated.group position={yPosAnimated} rotation={rocketRotAnimated}>
+        <Plane x={1.25} y={3} z={0.75} rot={45}/>
+      </animated.group>
+      
+
+    </group>
   )
 }
 
@@ -62,7 +78,7 @@ function Scene() {
       <ambientLight intensity={0.7}/>
       <directionalLight position={[10, 10, 5]} intensity={2} />
       <directionalLight position={[-10, -10, -5]} intensity={1} />
-      <Box/>
+      <Geometry />
     </>
   )
 }
