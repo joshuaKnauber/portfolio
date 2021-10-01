@@ -1,10 +1,13 @@
-import React, { useRef, useState, Suspense, useEffect } from 'react';
+import React, { useRef, useState, useEffect, Suspense } from 'react';
 import { useSpring, animated } from '@react-spring/three';
 
 import * as THREE from "three";
-import { Canvas, useFrame, useThree, extend } from '@react-three/fiber';
+import { Canvas, useFrame, useThree, extend, useLoader } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { EffectComposer, DepthOfField, Noise, Bloom, Vignette, ChromaticAberration } from "@react-three/postprocessing"
+
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import RocketGLTF from './models/rocket.gltf';
 
 import './App.css';
 
@@ -12,7 +15,7 @@ import './App.css';
 function Plane({x=0, y=0, z=0, rot=0}) {
   return (
     <mesh position={[x, y, z]} rotation={[0, rot, 0]}>
-      <planeBufferGeometry args={[5, 3]} attach="geometry" />
+      <planeBufferGeometry args={[4, 2.5]} attach="geometry" />
       <animated.meshPhongMaterial color={"red"} attach="material"  side={THREE.DoubleSide} />
     </mesh>
   )
@@ -20,6 +23,13 @@ function Plane({x=0, y=0, z=0, rot=0}) {
 
 
 function Rocket() {
+  const { nodes } = useLoader(GLTFLoader, RocketGLTF)
+  return (
+    <mesh geometry={nodes["stage"].geometry}>
+      <meshPhongMaterial attach="material" color="white" />
+    </mesh>
+  )
+
   return (
     <mesh>
       <boxBufferGeometry args={[1, 10, 1]} attach="geometry" />
@@ -35,15 +45,15 @@ function Geometry() {
   const [planeRot, setPlaneRot] = useState(0)
 
   const { yPosAnimated, rocketRotAnimated, planeRotAnimated } = useSpring({
-    yPosAnimated: [0, yPos-5, 0],
+    yPosAnimated: [0, yPos-50, 0],
     rocketRotAnimated: [0, rocketRot, 0],
     planeRotAnimated: [0, planeRot, 0],
   })
 
   const onScroll = (evt) => {
-    setYPos(yPos => Math.max(yPos + evt.deltaY*0.001, 0))
-    setRocketRot(yRot => Math.min(yRot - evt.deltaY*0.001, 0))
-    setPlaneRot(yRot => Math.min(yRot - evt.deltaY*0.001, 0))
+    setYPos(yPos => Math.max(yPos + evt.deltaY*0.002, 0))
+    setRocketRot(rocketRot => Math.min(rocketRot - evt.deltaY*0.001, 0))
+    setPlaneRot(planeRot => Math.min(planeRot - evt.deltaY*0.002, 0))
   }
 
   useEffect(() => {
@@ -58,11 +68,13 @@ function Geometry() {
     <group>
 
       <animated.group position={yPosAnimated} rotation={rocketRotAnimated}>
-        <Rocket />
+        <Suspense fallback={null}>
+          <Rocket />
+        </Suspense>
       </animated.group>
 
-      <animated.group position={yPosAnimated} rotation={rocketRotAnimated}>
-        <Plane x={1.25} y={3} z={0.75} rot={45}/>
+      <animated.group position={yPosAnimated} rotation={planeRotAnimated}>
+        <Plane x={0} y={37.5} z={2.5} rot={0}/>
       </animated.group>
       
 
