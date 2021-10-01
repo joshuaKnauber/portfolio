@@ -13,11 +13,10 @@ function Box() {
   const [yPos, setYPos] = useState(0)
   const [yRot, setYRot] = useState(0)
 
-  const { color, pos, rot, ...props } = useSpring({
+  const { color, pos, rot } = useSpring({
     color: active ? 'hotpink' : 'white',
-    pos: [0, yPos, 0],
+    pos: [0, yPos-5, 0],
     rot: [0, yRot, 0]
-    // config: { mass: 10, tension: 1000, friction: 300, precision: 0.00001 }
   })
 
   const setPointing = (pointing) => {
@@ -29,8 +28,8 @@ function Box() {
   }
 
   const onScroll = (evt) => {
-    setYPos(yPos => yPos + evt.deltaY*0.001)
-    setYRot(yRot => yRot - evt.deltaY*0.001)
+    setYPos(yPos => Math.max(yPos + evt.deltaY*0.001, 0))
+    setYRot(yRot => Math.min(yRot - evt.deltaY*0.001, 0))
   }
 
   useEffect(() => {
@@ -49,7 +48,7 @@ function Box() {
       onPointerEnter={e => setPointing(true)}
       onPointerOut={e => setPointing(false)}
     >
-      <boxBufferGeometry args={[1, 5, 1]} attach="geometry" />
+      <boxBufferGeometry args={[1, 10, 1]} attach="geometry" />
       <animated.meshPhongMaterial color={color} attach="material" />
     </animated.mesh>
   )
