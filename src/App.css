@@ -29,3 +29,7 @@ a {
   color: white;
   text-decoration: none;
 }
+
+.pointing {
+  cursor: pointer;
+}
