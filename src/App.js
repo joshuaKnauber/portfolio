@@ -1,39 +1,66 @@
-import React, { useRef, useState, useEffect, Suspense } from 'react';
+import React, { useRef, useState, useEffect, Suspense, useMemo } from 'react';
 import { useSpring, animated } from '@react-spring/three';
 
 import * as THREE from "three";
 import { Canvas, useFrame, useThree, extend, useLoader } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import { OrbitControls, CameraShake, Line, Text, MeshWobbleMaterial, MeshDistortMaterial, Sky } from '@react-three/drei';
 import { EffectComposer, DepthOfField, Noise, Bloom, Vignette, ChromaticAberration } from "@react-three/postprocessing"
 
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import RocketGLTF from './models/rocket.gltf';
+import { useGLTF, useTexture } from '@react-three/drei'
+
+import StageOne from './models/rocket.gltf';
+
+import StageOneColor from './models/stage-one-color.png';
+import StageOneMetalness from './models/stage-one-metalness.png';
+import StageOneRoughness from './models/stage-one-roughness.png';
+import StageOneAO from './models/stage-one-ao.png';
+import StageOneNormal from './models/stage-one-normal.png';
+
+import Emit from './models/emit.png';
 
 import './App.css';
 
 
+const ORBIT = false
+
+
 function Plane({x=0, y=0, z=0, rot=0}) {
+  const emit = useTexture(Emit)
   return (
-    <mesh position={[x, y, z]} rotation={[0, rot, 0]}>
-      <planeBufferGeometry args={[4, 2.5]} attach="geometry" />
-      <animated.meshPhongMaterial color={"red"} attach="material"  side={THREE.DoubleSide} />
-    </mesh>
+    <group>
+      <mesh position={[x, y, z]} rotation={[0, rot, 0]}>
+        <planeBufferGeometry args={[4, 2.5]} attach="geometry" />
+        <meshStandardMaterial attach="material"
+          factor={0.01} speed={5}
+          side={THREE.DoubleSide}
+          transparent={true}
+          map={emit}
+          emissiveMap={emit}
+          emissive={"white"}
+          emissiveIntensity={1}
+        />
+      </mesh>
+    </group>
   )
 }
 
 
 function Rocket() {
-  const { nodes } = useLoader(GLTFLoader, RocketGLTF)
+  const { nodes } = useGLTF(StageOne)
+  const color = useTexture(StageOneColor)
+  const metalness = useTexture(StageOneMetalness)
+  const roughness = useTexture(StageOneRoughness)
+  const ao = useTexture(StageOneAO)
+  const normal = useTexture(StageOneNormal)
   return (
-    <mesh geometry={nodes["stage"].geometry}>
-      <meshPhongMaterial attach="material" color="white" />
-    </mesh>
-  )
-
-  return (
-    <mesh>
-      <boxBufferGeometry args={[1, 10, 1]} attach="geometry" />
-      <animated.meshPhongMaterial color={"blue"} attach="material" />
+    <mesh geometry={nodes.stage.geometry} rotation={[0, 1, 0]}>
+      <meshStandardMaterial
+        map={color}
+        metalnessMap={metalness} 
+        roughnessMap={roughness} 
+        normalMap={normal} 
+        aoMap={ao}
+        map-flipY={false} />
     </mesh>
   )
 }
@@ -51,10 +78,16 @@ function Geometry() {
   })
 
   const onScroll = (evt) => {
-    setYPos(yPos => Math.max(yPos + evt.deltaY*0.002, 0))
-    setRocketRot(rocketRot => Math.min(rocketRot - evt.deltaY*0.001, 0))
-    setPlaneRot(planeRot => Math.min(planeRot - evt.deltaY*0.002, 0))
+    if (ORBIT) return
+    const maxPos = 48.5
+    const minRocketRot = -12
+    const minPlaneRot = -50 // this is 100% wrong
+    setYPos(yPos => Math.min(maxPos, Math.max(yPos + evt.deltaY*0.002, 0)))
+    setRocketRot(rocketRot => Math.max(minRocketRot, Math.min(rocketRot - evt.deltaY*0.0005, 0)))
+    setPlaneRot(planeRot => Math.max(minPlaneRot, Math.min(planeRot - evt.deltaY*0.002, 0)))
   }
+
+  // useEffect(() => {console.log(rocketRot)},[rocketRot])
 
   useEffect(() => {
     window.addEventListener("wheel", onScroll)
@@ -74,7 +107,9 @@ function Geometry() {
       </animated.group>
 
       <animated.group position={yPosAnimated} rotation={planeRotAnimated}>
-        <Plane x={0} y={37.5} z={2.5} rot={0}/>
+      <Suspense fallback={null}>
+          <Plane x={0} y={37.5} z={2.5} rot={0}/>
+        </Suspense>
       </animated.group>
       
 
@@ -98,16 +133,28 @@ function Scene() {
 
 export default function App() {
 
+  const config = {
+    maxYaw: 0.008, // Max amount camera can yaw in either direction
+    maxPitch: 0.008, // Max amount camera can pitch in either direction
+    maxRoll: 0.008, // Max amount camera can roll in either direction
+    yawFrequency: 0.5, // Frequency of the the yaw rotation
+    pitchFrequency: 0.5, // Frequency of the pitch rotation
+    rollFrequency: 0.5, // Frequency of the roll rotation
+    intensity: 1, // initial intensity of the shake
+    decay: false, // should the intensity decay over time
+  }
+
   return (
     <div className="App">
       <Canvas colorManagement shadowMap camera={{position:[0, 0, 5]}}>
-        {/* <OrbitControls/> */}
+        {ORBIT && <OrbitControls/>}
         <Scene/>
+        {/* <CameraShake {...config} /> */}
         <EffectComposer>
-          {/* <DepthOfField focusDistance={0} focalLength={0.02} bokehScale={2} height={480} /> */}
-          {/* <Bloom luminanceThreshold={0.6} luminanceSmoothing={0.4} height={400} opacity={2} /> */}
-          {/* <ChromaticAberration offset={[0.001,0.0]}/> */}
-          {/* <Vignette eskil={false} offset={0.25} darkness={0.75} /> */}
+          {/* <DepthOfField focusDistance={0} focalLength={0.03} bokehScale={2} height={480} /> */}
+          {/* <Bloom luminanceThreshold={0.8} luminanceSmoothing={0.5} height={500} opacity={1.5} /> */}
+          {/* <ChromaticAberration offset={[0.0005,0.0]}/> */}
+          {/* <Vignette eskil={false} offset={0.2} darkness={0.8} /> */}
         </EffectComposer>
       </Canvas>
     </div>
