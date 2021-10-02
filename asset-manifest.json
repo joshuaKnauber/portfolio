@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/joshuaknauber.com/static/css/main.a214423a.chunk.css",
+    "main.js": "/joshuaknauber.com/static/js/main.9748d094.chunk.js",
+    "main.js.map": "/joshuaknauber.com/static/js/main.9748d094.chunk.js.map",
+    "runtime-main.js": "/joshuaknauber.com/static/js/runtime-main.842d0a95.js",
+    "runtime-main.js.map": "/joshuaknauber.com/static/js/runtime-main.842d0a95.js.map",
+    "static/js/2.381d023e.chunk.js": "/joshuaknauber.com/static/js/2.381d023e.chunk.js",
+    "static/js/2.381d023e.chunk.js.map": "/joshuaknauber.com/static/js/2.381d023e.chunk.js.map",
+    "static/js/3.858dfb3f.chunk.js": "/joshuaknauber.com/static/js/3.858dfb3f.chunk.js",
+    "static/js/3.858dfb3f.chunk.js.map": "/joshuaknauber.com/static/js/3.858dfb3f.chunk.js.map",
+    "index.html": "/joshuaknauber.com/index.html",
+    "static/css/main.a214423a.chunk.css.map": "/joshuaknauber.com/static/css/main.a214423a.chunk.css.map",
+    "static/js/2.381d023e.chunk.js.LICENSE.txt": "/joshuaknauber.com/static/js/2.381d023e.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/joshuaknauber.com/static/media/ClarityCity-SemiBold.ee52c31a.woff",
+    "static/media/rocket.b40d0ec2.gltf": "/joshuaknauber.com/static/media/rocket.b40d0ec2.gltf",
+    "static/media/stage-one-ao.a934163f.png": "/joshuaknauber.com/static/media/stage-one-ao.a934163f.png",
+    "static/media/stage-one-color.e4f1fe01.png": "/joshuaknauber.com/static/media/stage-one-color.e4f1fe01.png",
+    "static/media/stage-one-normal.56c2ad40.png": "/joshuaknauber.com/static/media/stage-one-normal.56c2ad40.png",
+    "static/media/stage-one-roughness.78ffa3bb.png": "/joshuaknauber.com/static/media/stage-one-roughness.78ffa3bb.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.842d0a95.js",
+    "static/js/2.381d023e.chunk.js",
+    "static/css/main.a214423a.chunk.css",
+    "static/js/main.9748d094.chunk.js"
+  ]
+}
