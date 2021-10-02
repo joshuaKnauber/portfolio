@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/portfolio/static/css/main.76cb938c.chunk.css",
-    "main.js": "/portfolio/static/js/main.9748d094.chunk.js",
-    "main.js.map": "/portfolio/static/js/main.9748d094.chunk.js.map",
-    "runtime-main.js": "/portfolio/static/js/runtime-main.1bbf8e72.js",
-    "runtime-main.js.map": "/portfolio/static/js/runtime-main.1bbf8e72.js.map",
-    "static/js/2.381d023e.chunk.js": "/portfolio/static/js/2.381d023e.chunk.js",
-    "static/js/2.381d023e.chunk.js.map": "/portfolio/static/js/2.381d023e.chunk.js.map",
-    "static/js/3.858dfb3f.chunk.js": "/portfolio/static/js/3.858dfb3f.chunk.js",
-    "static/js/3.858dfb3f.chunk.js.map": "/portfolio/static/js/3.858dfb3f.chunk.js.map",
-    "index.html": "/portfolio/index.html",
-    "static/css/main.76cb938c.chunk.css.map": "/portfolio/static/css/main.76cb938c.chunk.css.map",
-    "static/js/2.381d023e.chunk.js.LICENSE.txt": "/portfolio/static/js/2.381d023e.chunk.js.LICENSE.txt",
-    "static/media/App.css": "/portfolio/static/media/ClarityCity-SemiBold.ee52c31a.woff",
-    "static/media/rocket.b40d0ec2.gltf": "/portfolio/static/media/rocket.b40d0ec2.gltf",
-    "static/media/stage-one-ao.a934163f.png": "/portfolio/static/media/stage-one-ao.a934163f.png",
-    "static/media/stage-one-color.e4f1fe01.png": "/portfolio/static/media/stage-one-color.e4f1fe01.png",
-    "static/media/stage-one-normal.56c2ad40.png": "/portfolio/static/media/stage-one-normal.56c2ad40.png",
-    "static/media/stage-one-roughness.78ffa3bb.png": "/portfolio/static/media/stage-one-roughness.78ffa3bb.png"
+    "main.css": "/static/css/main.17947213.chunk.css",
+    "main.js": "/static/js/main.9748d094.chunk.js",
+    "main.js.map": "/static/js/main.9748d094.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.b3c24e2a.js",
+    "runtime-main.js.map": "/static/js/runtime-main.b3c24e2a.js.map",
+    "static/js/2.381d023e.chunk.js": "/static/js/2.381d023e.chunk.js",
+    "static/js/2.381d023e.chunk.js.map": "/static/js/2.381d023e.chunk.js.map",
+    "static/js/3.858dfb3f.chunk.js": "/static/js/3.858dfb3f.chunk.js",
+    "static/js/3.858dfb3f.chunk.js.map": "/static/js/3.858dfb3f.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.17947213.chunk.css.map": "/static/css/main.17947213.chunk.css.map",
+    "static/js/2.381d023e.chunk.js.LICENSE.txt": "/static/js/2.381d023e.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/static/media/ClarityCity-SemiBold.ee52c31a.woff",
+    "static/media/rocket.b40d0ec2.gltf": "/static/media/rocket.b40d0ec2.gltf",
+    "static/media/stage-one-ao.a934163f.png": "/static/media/stage-one-ao.a934163f.png",
+    "static/media/stage-one-color.e4f1fe01.png": "/static/media/stage-one-color.e4f1fe01.png",
+    "static/media/stage-one-normal.56c2ad40.png": "/static/media/stage-one-normal.56c2ad40.png",
+    "static/media/stage-one-roughness.78ffa3bb.png": "/static/media/stage-one-roughness.78ffa3bb.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.1bbf8e72.js",
+    "static/js/runtime-main.b3c24e2a.js",
     "static/js/2.381d023e.chunk.js",
-    "static/css/main.76cb938c.chunk.css",
+    "static/css/main.17947213.chunk.css",
     "static/js/main.9748d094.chunk.js"
   ]
 }
