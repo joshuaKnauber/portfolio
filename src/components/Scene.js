@@ -11,30 +11,6 @@ const ORBIT_CONTROLS = false
 
 
 export default function Scene() {
-  const [yPosRocket, setYPosRocket] = useState(0)
-  const [yPosPlane, setYPosPlane] = useState(0)
-
-  const [rotRocket, setRotRocket] = useState(0)
-  const [rotPlane, setRotPlane] = useState(0)
-
-
-  const planes = [
-    null,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-  ]
-
 
   const START_Y_ROCKET = -50 // amount the rocket is translated on y at the start
   const START_Y_PLANE = 0 // amount the planes are translated on y at the start
@@ -42,13 +18,38 @@ export default function Scene() {
   const PLANE_VERT_DIST = -3 // vertical distance between the planes
   const PLANE_HORIZ_DIST = 3 // horizontal distance between the planes and the center
 
+  const planes = [
+    null,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    null
+  ]
+
+
+  const [yPosRocket, setYPosRocket] = useState(START_Y_ROCKET)
+  const [yPosPlane, setYPosPlane] = useState(START_Y_PLANE)
+
+  const [rotRocket, setRotRocket] = useState(0)
+  const [rotPlane, setRotPlane] = useState(0)
+
 
   const degrees_to_radians = (degrees) => {return degrees * (Math.PI/180)}
 
 
   const { yPosRocketAnimated, yPosPlaneAnimated, rotRocketAnimated, rotPlaneAnimated } = useSpring({
-    yPosRocketAnimated: [0, yPosRocket + START_Y_ROCKET, 0],
-    yPosPlaneAnimated: [0, yPosPlane + START_Y_PLANE, 0],
+    yPosRocketAnimated: [0, yPosRocket, 0],
+    yPosPlaneAnimated: [0, yPosPlane, 0],
     rotRocketAnimated: [0, degrees_to_radians(rotRocket), 0],
     rotPlaneAnimated: [0, degrees_to_radians(rotPlane), 0],
   })
@@ -61,17 +62,21 @@ export default function Scene() {
     setYPosPlane(newYPos)
 
     // move rocket to correct position
+    const percentageComplete = rotations / planes.length
+    const newRocketPos = START_Y_ROCKET + START_Y_ROCKET*percentageComplete
+    setYPosRocket(newRocketPos)
+
+    // rotate rocket
+    const ROCKET_ROTATIONS = 20
+    setRotRocket(rot => {
+      const newRocketRot = ROCKET_ROTATIONS*90 * percentageComplete
+      return newRocketRot
+    })
   }, [rotPlane])
 
 
   const rotateElements = (scrollAmount) => {
     if (ORBIT_CONTROLS) return
-
-    const ROCKET_ROT_SPEED = 0.1
-    setRotRocket(rot => {
-      const newRot = rot - scrollAmount*ROCKET_ROT_SPEED
-      return Math.min(0, newRot)
-    })
 
     setRotPlane(rot => {
       let newRot = rot - scrollAmount
@@ -89,7 +94,7 @@ export default function Scene() {
         }
       }
 
-      return Math.min(0, newRot)
+      return Math.max(-planes.length*90, Math.min(0, newRot))
     })
   }
 
@@ -112,7 +117,8 @@ export default function Scene() {
 
   const onPointerMove = (evt) => {
     if (!isNaN(pointerStartY)) {
-      rotateElements(pointerStartY - evt.pageY)
+      const MOBILE_SCROLL_SPEED = 0.5
+      rotateElements((pointerStartY - evt.pageY) * MOBILE_SCROLL_SPEED)
       pointerStartY = evt.pageY
     }
   }
@@ -144,18 +150,18 @@ export default function Scene() {
       <Suspense fallback={null}>
         <animated.group position={yPosPlaneAnimated} rotation={rotPlaneAnimated}>
           {planes.map((data, index) => {
-            if (data === null) return <></>
+            if (data === null) return null
 
             const isX = 1 - Number(index % 2 === 0)
             const factorX = (Number((index+1) % 4 === 0) * 2 - 1) * isX * -1
             const factorZ = (Number(index % 4 === 0) * 2 - 1) * (1-isX)
 
-            return <Plane key={index}
-                      x={PLANE_HORIZ_DIST * factorX}
-                      y={PLANE_VERT_DIST * index}
-                      z={PLANE_HORIZ_DIST * factorZ}
-                      rot={Math.PI/2 * index}
-                    />
+            return <Plane key={JSON.stringify(data)}
+              x={PLANE_HORIZ_DIST * factorX}
+              y={PLANE_VERT_DIST * index}
+              z={PLANE_HORIZ_DIST * factorZ}
+              rot={Math.PI/2 * index}
+            />
           })}
         </animated.group>
       </Suspense>
