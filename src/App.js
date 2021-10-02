@@ -27,20 +27,18 @@ const ORBIT = false
 function Plane({x=0, y=0, z=0, rot=0}) {
   const emit = useTexture(Emit)
   return (
-    <group>
-      <mesh position={[x, y, z]} rotation={[0, rot, 0]}>
-        <planeBufferGeometry args={[4, 2.5]} attach="geometry" />
-        <meshStandardMaterial attach="material"
-          factor={0.01} speed={5}
-          side={THREE.DoubleSide}
-          transparent={true}
-          map={emit}
-          emissiveMap={emit}
-          emissive={"white"}
-          emissiveIntensity={1}
-        />
-      </mesh>
-    </group>
+    <mesh position={[x, y, z]} rotation={[0, rot, 0]}>
+      <planeBufferGeometry args={[4, 2.5]} attach="geometry" />
+      <meshStandardMaterial attach="material"
+        factor={0.01} speed={5}
+        side={THREE.DoubleSide}
+        transparent={true}
+        map={emit}
+        emissiveMap={emit}
+        emissive={"white"}
+        emissiveIntensity={1}
+      />
+    </mesh>
   )
 }
 
@@ -121,16 +119,14 @@ function Geometry() {
     <group>
 
       <animated.group position={yPosAnimated} rotation={rocketRotAnimated}>
-        <Suspense fallback={null}>
-          <Rocket />
-        </Suspense>
+      <Rocket />
       </animated.group>
 
-      <animated.group position={yPosAnimated} rotation={planeRotAnimated}>
       <Suspense fallback={null}>
-          <Plane x={0} y={37.5} z={2.5} rot={0}/>
-        </Suspense>
-      </animated.group>
+        <animated.group position={yPosAnimated} rotation={planeRotAnimated}>
+            <Plane x={0} y={37.5} z={2.5} rot={0}/>
+        </animated.group>
+      </Suspense>
       
     </group>
   )
@@ -175,6 +171,15 @@ function Scene() {
 }
 
 
+function Loading() {
+  return (
+    <div className="loadingContainer">
+      Loading Assets...
+    </div>
+  )
+}
+
+
 export default function App() {
 
   const shakeConfig = {
@@ -190,17 +195,19 @@ export default function App() {
 
   return (
     <div className="App">
-      <Canvas colorManagement shadowMap camera={{position:[0, 0, 5]}}>
-        {ORBIT && <OrbitControls/>}
-        <Scene/>
-        <CameraShake {...shakeConfig} />
-        <EffectComposer>
-          {/* <DepthOfField focusDistance={0} focalLength={0.03} bokehScale={2} height={480} /> */}
-          {/* <Bloom luminanceThreshold={0.8} luminanceSmoothing={0.5} height={500} opacity={1.5} /> */}
-          {/* <ChromaticAberration offset={[0.0005,0.0]}/> */}
-          {/* <Vignette eskil={false} offset={0.2} darkness={0.8} /> */}
-        </EffectComposer>
-      </Canvas>
+      <Suspense fallback={<Loading/>}>
+        <Canvas colorManagement shadowMap camera={{position:[0, 0, 5]}}>
+          {ORBIT && <OrbitControls/>}
+          <Scene/>
+          <CameraShake {...shakeConfig} />
+          <EffectComposer>
+            {/* <DepthOfField focusDistance={0} focalLength={0.03} bokehScale={2} height={480} /> */}
+            {/* <Bloom luminanceThreshold={0.8} luminanceSmoothing={0.5} height={500} opacity={1.5} /> */}
+            {/* <ChromaticAberration offset={[0.0005,0.0]}/> */}
+            {/* <Vignette eskil={false} offset={0.2} darkness={0.8} /> */}
+          </EffectComposer>
+        </Canvas>
+      </Suspense>
     </div>
   );
 }
