@@ -15,14 +15,11 @@ export default function Plane({x=0, y=0, z=0, rot=0}) {
   return (
     <mesh position={[x, y, z]} rotation={[0, rot, 0]}>
       <planeBufferGeometry args={[4, 2.5]} attach="geometry" />
-      <MeshWobbleMaterial attach="material"
+      <meshStandardMaterial attach="material"
         factor={0.02} speed={3}
         side={THREE.DoubleSide}
         transparent={true}
         map={emit}
-        emissiveMap={emit}
-        emissive={"white"}
-        emissiveIntensity={4}
       />
     </mesh>
   )
