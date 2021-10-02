@@ -13,7 +13,7 @@ import Scene from './components/Scene';
 import ResizeController from './components/ResizeController';
 
 
-const ORBIT = false
+const ORBIT_CONTROLS = false
 
 
 export default function App() {
@@ -34,7 +34,7 @@ export default function App() {
       <Suspense fallback={<Loading/>}>
 
         <Canvas colorManagement camera={{position:[0, 0, 0]}}>
-          {ORBIT && <OrbitControls/>}
+          {ORBIT_CONTROLS && <OrbitControls/>}
           {/* <CameraShake {...shakeConfig} /> */}
           <ResizeController />
 

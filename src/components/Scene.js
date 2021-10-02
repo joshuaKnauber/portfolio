@@ -7,7 +7,7 @@ import Rocket from './Rocket';
 import Plane from './Plane';
 
 
-const ORBIT = false
+const ORBIT_CONTROLS = false
 
 
 export default function Scene() {
@@ -18,11 +18,33 @@ export default function Scene() {
   const [rotPlane, setRotPlane] = useState(0)
 
 
+  const planes = [
+    null,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+  ]
+
+
   const START_Y_ROCKET = -50 // amount the rocket is translated on y at the start
   const START_Y_PLANE = 0 // amount the planes are translated on y at the start
 
+  const PLANE_VERT_DIST = -3 // vertical distance between the planes
+  const PLANE_HORIZ_DIST = 3 // horizontal distance between the planes and the center
+
+
   const degrees_to_radians = (degrees) => {return degrees * (Math.PI/180)}
-  const restrict_to_increments = (number, increment) => {return number - number%increment}
+
 
   const { yPosRocketAnimated, yPosPlaneAnimated, rotRocketAnimated, rotPlaneAnimated } = useSpring({
     yPosRocketAnimated: [0, yPosRocket + START_Y_ROCKET, 0],
@@ -32,13 +54,25 @@ export default function Scene() {
   })
 
 
-  const moveElements = (scrollAmount, moveAmount) => {
-    if (ORBIT) return
+  useEffect(() => {
+    // move plane to correct position
+    const rotations = rotPlane / 90
+    const newYPos = START_Y_PLANE + PLANE_VERT_DIST * rotations
+    setYPosPlane(newYPos)
 
-    // setYPosRocket(pos => pos + 0.001)
-    // setYPosPlane(pos => pos + 0.001)
+    // move rocket to correct position
+  }, [rotPlane])
 
-    setRotRocket(rot => rot - scrollAmount)
+
+  const rotateElements = (scrollAmount) => {
+    if (ORBIT_CONTROLS) return
+
+    const ROCKET_ROT_SPEED = 0.1
+    setRotRocket(rot => {
+      const newRot = rot - scrollAmount*ROCKET_ROT_SPEED
+      return Math.min(0, newRot)
+    })
+
     setRotPlane(rot => {
       let newRot = rot - scrollAmount
 
@@ -48,35 +82,37 @@ export default function Scene() {
         const toScrollDirection = (nextMultiple - rot) / Math.abs(nextMultiple - rot)
         const scrollDirection = scrollAmount / Math.abs(scrollAmount) * -1
         const snapDistance = Math.abs(Math.abs(nextMultiple) - Math.abs(rot))
-        console.log(snapDistance)
+
+        // if scrolled far enough
         if (Math.abs(scrollAmount) > 9 && toScrollDirection === scrollDirection && snapDistance <= 18) {
           newRot = nextMultiple
-          console.log("snap")
         }
       }
 
-      return newRot
+      return Math.min(0, newRot)
     })
   }
 
 
-  // scroll desktop
+  // SCROLL ON DESKTOP
   const onScroll = (evt) => {
-    const MAX_SCROLL_DELTA = 18
-    const scrollAmount = Math.min(MAX_SCROLL_DELTA, Math.abs(evt.deltaY)) * evt.deltaY/Math.abs(evt.deltaY)
+    // limit scroll amount to 18 to add up to 90°
+    const scrollAmount = Math.min(18, Math.abs(evt.deltaY)) * evt.deltaY/Math.abs(evt.deltaY)
 
     const moveAmount = 0
 
-    moveElements(scrollAmount, moveAmount)
+    rotateElements(scrollAmount, moveAmount)
   }
 
-  // scroll mobile
+
+  // SCROLL ON MOBILE
   let pointerStartY = useRef(NaN)
   const onPointerDown = (evt) => pointerStartY = evt.pageY
   const onPointerUp = () => pointerStartY = NaN
+
   const onPointerMove = (evt) => {
     if (!isNaN(pointerStartY)) {
-      moveElements(pointerStartY - evt.pageY)
+      rotateElements(pointerStartY - evt.pageY)
       pointerStartY = evt.pageY
     }
   }
@@ -95,10 +131,6 @@ export default function Scene() {
     }
   }, [])
 
-
-  const V_DIST = -3
-  const H_DIST = 3
-
   return (
     <>
       <ambientLight intensity={0.7}/>
@@ -111,8 +143,20 @@ export default function Scene() {
 
       <Suspense fallback={null}>
         <animated.group position={yPosPlaneAnimated} rotation={rotPlaneAnimated}>
-            <Plane x={0} y={0} z={H_DIST} rot={0}/>
-            <Plane x={H_DIST} y={V_DIST*1} z={0} rot={Math.PI/2}/>
+          {planes.map((data, index) => {
+            if (data === null) return <></>
+
+            const isX = 1 - Number(index % 2 === 0)
+            const factorX = (Number((index+1) % 4 === 0) * 2 - 1) * isX * -1
+            const factorZ = (Number(index % 4 === 0) * 2 - 1) * (1-isX)
+
+            return <Plane key={index}
+                      x={PLANE_HORIZ_DIST * factorX}
+                      y={PLANE_VERT_DIST * index}
+                      z={PLANE_HORIZ_DIST * factorZ}
+                      rot={Math.PI/2 * index}
+                    />
+          })}
         </animated.group>
       </Suspense>
     </>

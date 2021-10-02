@@ -14,7 +14,7 @@ export default function Plane({x=0, y=0, z=0, rot=0}) {
   const emit = useTexture(Emit)
   return (
     <mesh position={[x, y, z]} rotation={[0, rot, 0]}>
-      <planeBufferGeometry args={[4, 2.5]} attach="geometry" />
+      <planeBufferGeometry args={[3.5, 2]} attach="geometry" />
       <meshStandardMaterial attach="material"
         factor={0.02} speed={3}
         side={THREE.DoubleSide}
