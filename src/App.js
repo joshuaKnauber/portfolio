@@ -77,23 +77,37 @@ function Geometry() {
     planeRotAnimated: [0, planeRot, 0],
   })
 
-  const onScroll = (evt) => {
+  const moveElements = (yAmount) => {
     if (ORBIT) return
     const maxPos = 48.5
     const minRocketRot = -12
     const minPlaneRot = -50 // this is 100% wrong
-    setYPos(yPos => Math.min(maxPos, Math.max(yPos + evt.deltaY*0.002, 0)))
-    setRocketRot(rocketRot => Math.max(minRocketRot, Math.min(rocketRot - evt.deltaY*0.0005, 0)))
-    setPlaneRot(planeRot => Math.max(minPlaneRot, Math.min(planeRot - evt.deltaY*0.002, 0)))
-  }
-
+    setYPos(yPos => Math.min(maxPos, Math.max(yPos + yAmount*0.002, 0)))
+    setRocketRot(rocketRot => Math.max(minRocketRot, Math.min(rocketRot - yAmount*0.0005, 0)))
+    setPlaneRot(planeRot => Math.max(minPlaneRot, Math.min(planeRot - yAmount*0.002, 0)))
+  } 
   // useEffect(() => {console.log(rocketRot)},[rocketRot])
 
+  // scroll desktop
+  const onScroll = (evt) => moveElements(evt.deltaY)
+
+  // scroll mobile
+  let pointerStartY = useRef(null)
+  const onPointerDown = (evt) => pointerStartY = evt.pageY
+  const onPointerMove = (evt) => {
+    moveElements(pointerStartY - evt.pageY)
+    pointerStartY = evt.pageY
+  }
+
   useEffect(() => {
-    window.addEventListener("wheel", onScroll)
+    document.body.addEventListener("wheel", onScroll)
+    document.body.addEventListener("pointerdown", onPointerDown)
+    document.body.addEventListener("pointermove", onPointerMove)
 
     return () => {
-      window.removeEventListener("wheel", onScroll)
+      document.body.removeEventListener("wheel", onScroll)
+      document.body.removeEventListener("pointerdown", onPointerDown)
+      document.body.removeEventListener("pointermove", onPointerMove)
     }
   }, [])
   
@@ -112,7 +126,6 @@ function Geometry() {
         </Suspense>
       </animated.group>
       
-
     </group>
   )
 }
@@ -133,7 +146,7 @@ function Scene() {
 
 export default function App() {
 
-  const config = {
+  const shakeConfig = {
     maxYaw: 0.008, // Max amount camera can yaw in either direction
     maxPitch: 0.008, // Max amount camera can pitch in either direction
     maxRoll: 0.008, // Max amount camera can roll in either direction
@@ -149,7 +162,7 @@ export default function App() {
       <Canvas colorManagement shadowMap camera={{position:[0, 0, 5]}}>
         {ORBIT && <OrbitControls/>}
         <Scene/>
-        <CameraShake {...config} />
+        <CameraShake {...shakeConfig} />
         <EffectComposer>
           {/* <DepthOfField focusDistance={0} focalLength={0.03} bokehScale={2} height={480} /> */}
           {/* <Bloom luminanceThreshold={0.8} luminanceSmoothing={0.5} height={500} opacity={1.5} /> */}

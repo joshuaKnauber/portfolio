@@ -15,6 +15,7 @@ body {
   padding: 0px;
   color: white;
   font-family: "ClarityCity";
+  touch-action: none;
 }
 
 .App {
