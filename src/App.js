@@ -78,6 +78,7 @@ function Geometry() {
   })
 
   const moveElements = (yAmount) => {
+    console.log(yAmount)
     if (ORBIT) return
     const maxPos = 48.5
     const minRocketRot = -12
@@ -92,21 +93,26 @@ function Geometry() {
   const onScroll = (evt) => moveElements(evt.deltaY)
 
   // scroll mobile
-  let pointerStartY = useRef(null)
+  let pointerStartY = useRef(NaN)
   const onPointerDown = (evt) => pointerStartY = evt.pageY
+  const onPointerUp = () => pointerStartY = NaN
   const onPointerMove = (evt) => {
-    moveElements(pointerStartY - evt.pageY)
-    pointerStartY = evt.pageY
+    if (!isNaN(pointerStartY)) {
+      moveElements(pointerStartY - evt.pageY)
+      pointerStartY = evt.pageY
+    }
   }
 
   useEffect(() => {
     document.body.addEventListener("wheel", onScroll)
     document.body.addEventListener("pointerdown", onPointerDown)
+    document.body.addEventListener("pointerup", onPointerUp)
     document.body.addEventListener("pointermove", onPointerMove)
 
     return () => {
       document.body.removeEventListener("wheel", onScroll)
       document.body.removeEventListener("pointerdown", onPointerDown)
+      document.body.removeEventListener("pointerup", onPointerUp)
       document.body.removeEventListener("pointermove", onPointerMove)
     }
   }, [])
@@ -132,6 +138,31 @@ function Geometry() {
 
 
 function Scene() {
+  const { camera } = useThree()
+
+  const onResize = () => {
+    if (window.innerWidth < 500) {
+      camera.position.z = 8
+    }
+    else if (window.innerWidth < 700) {
+      camera.position.z = 6
+    }
+    else if (window.innerWidth < 1000) {
+      camera.position.z = 5
+    }
+    else if (window.innerWidth >= 1000) {
+      camera.position.z = 5
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("resize", onResize)
+    onResize()
+
+    return () => {
+      window.removeEventListener("resize", onResize)
+    }
+  }, [])
 
   return (
     <>
