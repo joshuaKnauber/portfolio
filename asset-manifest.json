@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/portfolio/static/css/main.76cb938c.chunk.css",
-    "main.js": "/portfolio/static/js/main.9748d094.chunk.js",
-    "main.js.map": "/portfolio/static/js/main.9748d094.chunk.js.map",
-    "runtime-main.js": "/portfolio/static/js/runtime-main.1bbf8e72.js",
-    "runtime-main.js.map": "/portfolio/static/js/runtime-main.1bbf8e72.js.map",
-    "static/js/2.381d023e.chunk.js": "/portfolio/static/js/2.381d023e.chunk.js",
-    "static/js/2.381d023e.chunk.js.map": "/portfolio/static/js/2.381d023e.chunk.js.map",
-    "static/js/3.858dfb3f.chunk.js": "/portfolio/static/js/3.858dfb3f.chunk.js",
-    "static/js/3.858dfb3f.chunk.js.map": "/portfolio/static/js/3.858dfb3f.chunk.js.map",
-    "index.html": "/portfolio/index.html",
-    "static/css/main.76cb938c.chunk.css.map": "/portfolio/static/css/main.76cb938c.chunk.css.map",
-    "static/js/2.381d023e.chunk.js.LICENSE.txt": "/portfolio/static/js/2.381d023e.chunk.js.LICENSE.txt",
-    "static/media/App.css": "/portfolio/static/media/ClarityCity-SemiBold.ee52c31a.woff",
-    "static/media/rocket.b40d0ec2.gltf": "/portfolio/static/media/rocket.b40d0ec2.gltf",
-    "static/media/stage-one-ao.a934163f.png": "/portfolio/static/media/stage-one-ao.a934163f.png",
-    "static/media/stage-one-color.e4f1fe01.png": "/portfolio/static/media/stage-one-color.e4f1fe01.png",
-    "static/media/stage-one-normal.56c2ad40.png": "/portfolio/static/media/stage-one-normal.56c2ad40.png",
-    "static/media/stage-one-roughness.78ffa3bb.png": "/portfolio/static/media/stage-one-roughness.78ffa3bb.png"
+    "main.css": "/joshuaknauber.com/static/css/main.a214423a.chunk.css",
+    "main.js": "/joshuaknauber.com/static/js/main.9748d094.chunk.js",
+    "main.js.map": "/joshuaknauber.com/static/js/main.9748d094.chunk.js.map",
+    "runtime-main.js": "/joshuaknauber.com/static/js/runtime-main.842d0a95.js",
+    "runtime-main.js.map": "/joshuaknauber.com/static/js/runtime-main.842d0a95.js.map",
+    "static/js/2.381d023e.chunk.js": "/joshuaknauber.com/static/js/2.381d023e.chunk.js",
+    "static/js/2.381d023e.chunk.js.map": "/joshuaknauber.com/static/js/2.381d023e.chunk.js.map",
+    "static/js/3.858dfb3f.chunk.js": "/joshuaknauber.com/static/js/3.858dfb3f.chunk.js",
+    "static/js/3.858dfb3f.chunk.js.map": "/joshuaknauber.com/static/js/3.858dfb3f.chunk.js.map",
+    "index.html": "/joshuaknauber.com/index.html",
+    "static/css/main.a214423a.chunk.css.map": "/joshuaknauber.com/static/css/main.a214423a.chunk.css.map",
+    "static/js/2.381d023e.chunk.js.LICENSE.txt": "/joshuaknauber.com/static/js/2.381d023e.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/joshuaknauber.com/static/media/ClarityCity-SemiBold.ee52c31a.woff",
+    "static/media/rocket.b40d0ec2.gltf": "/joshuaknauber.com/static/media/rocket.b40d0ec2.gltf",
+    "static/media/stage-one-ao.a934163f.png": "/joshuaknauber.com/static/media/stage-one-ao.a934163f.png",
+    "static/media/stage-one-color.e4f1fe01.png": "/joshuaknauber.com/static/media/stage-one-color.e4f1fe01.png",
+    "static/media/stage-one-normal.56c2ad40.png": "/joshuaknauber.com/static/media/stage-one-normal.56c2ad40.png",
+    "static/media/stage-one-roughness.78ffa3bb.png": "/joshuaknauber.com/static/media/stage-one-roughness.78ffa3bb.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.1bbf8e72.js",
+    "static/js/runtime-main.842d0a95.js",
     "static/js/2.381d023e.chunk.js",
-    "static/css/main.76cb938c.chunk.css",
+    "static/css/main.a214423a.chunk.css",
     "static/js/main.9748d094.chunk.js"
   ]
 }
