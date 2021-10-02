@@ -149,7 +149,7 @@ export default function App() {
       <Canvas colorManagement shadowMap camera={{position:[0, 0, 5]}}>
         {ORBIT && <OrbitControls/>}
         <Scene/>
-        {/* <CameraShake {...config} /> */}
+        <CameraShake {...config} />
         <EffectComposer>
           {/* <DepthOfField focusDistance={0} focalLength={0.03} bokehScale={2} height={480} /> */}
           {/* <Bloom luminanceThreshold={0.8} luminanceSmoothing={0.5} height={500} opacity={1.5} /> */}
