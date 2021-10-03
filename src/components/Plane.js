@@ -17,7 +17,7 @@ export default function Plane({x=0, y=0, z=0, rot=0, opacity=1}) {
     <mesh position={[x, y, z]} rotation={[0, rot, 0]}>
       <planeBufferGeometry args={[3.5, 2]} attach="geometry" />
       <MeshWobbleMaterial attach="material"
-        factor={0.02} speed={3}
+        factor={Math.min(0.2, 1.03-opacity)} speed={3}
         side={THREE.DoubleSide}
         transparent={true}
         opacity={opacity}

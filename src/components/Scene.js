@@ -41,6 +41,7 @@ export default function Scene() {
 
 
   const degrees_to_radians = (degrees) => {return degrees * (Math.PI/180)}
+  const mapRange = (value, x1, y1, x2, y2) => (value - x1) * (y2 - x2) / (y1 - x1) + x2;
 
 
   const { yPosRocketAnimated, yPosPlaneAnimated, rotRocketAnimated, rotPlaneAnimated } = useSpring({
@@ -154,7 +155,7 @@ export default function Scene() {
 
             const rotations = rotPlane*-1 / 90
             const distance = Math.min(1.3, Math.abs(rotations - index))
-            const opacity = 1.3 - distance
+            const opacity = mapRange(1.3 - distance, 0, 1.3, 0, 1)
 
             return <Plane key={JSON.stringify(data)}
               x={PLANE_HORIZ_DIST * factorX}

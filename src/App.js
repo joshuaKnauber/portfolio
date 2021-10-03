@@ -42,9 +42,9 @@ export default function App() {
 
           <EffectComposer>
             {/* <DepthOfField focusDistance={0} focalLength={0.03} bokehScale={2} height={480} /> */}
-            {/* <Bloom luminanceThreshold={0.8} luminanceSmoothing={0.5} height={500} opacity={1.5} /> */}
-            {/* <ChromaticAberration offset={[0.0005,0.0]}/> */}
-            {/* <Vignette eskil={false} offset={0.2} darkness={0.8} /> */}
+            {/* <Bloom luminanceThreshold={0.8} luminanceSmoothing={0.5} height={500} opacity={1.5} />
+            <ChromaticAberration offset={[0.0005, 0.0]}/>
+            <Vignette eskil={false} offset={0.4} darkness={0.7} /> */}
           </EffectComposer>
           
         </Canvas>
