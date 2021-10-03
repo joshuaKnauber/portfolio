@@ -28,7 +28,16 @@ body {
   align-items: center;
 }
 
-.loadingContainer {
+.headerContainer {
+  position: fixed;
+  left: 0;
+  width: 100vw;
+}
+
+.footerContainer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
 }
 
 a {

@@ -22,7 +22,7 @@ export default function Rocket() {
   const normal = useTexture(StageOneNormal)
   return (
     <mesh geometry={nodes.stage.geometry} rotation={[0, 1, 0]}>
-      <meshStandardMaterial
+      <meshStandardMaterial 
         map={color}
         metalnessMap={metalness} 
         roughnessMap={roughness} 

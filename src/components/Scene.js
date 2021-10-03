@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect, Suspense } from 'react';
 import { useSpring, animated } from '@react-spring/three';
+import { useFrame } from '@react-three/fiber';
 
 import { Line, Text, MeshWobbleMaterial, Html } from '@react-three/drei';
 import * as THREE from "three";
@@ -13,7 +14,7 @@ import HeaderFont from '../fonts/ClarityCity-SemiBold.woff';
 const ORBIT_CONTROLS = false
 
 
-export default function Scene() {
+export default function Scene({ setShowHeader }) {
 
   const START_Y_ROCKET = -50 // amount the rocket is translated on y at the start
   const END_Y_ROCKET = -1 // final y position of the rocket
@@ -41,6 +42,8 @@ export default function Scene() {
   const [rotRocket, setRotRocket] = useState(0)
   const [rotPlane, setRotPlane] = useState(0)
 
+  const rocketObjects = useRef()
+
 
   const degrees_to_radians = (degrees) => {return degrees * (Math.PI/180)}
   const mapRange = (value, x1, y1, x2, y2) => (value - x1) * (y2 - x2) / (y1 - x1) + x2;
@@ -55,6 +58,13 @@ export default function Scene() {
 
 
   useEffect(() => {
+    // show or hide header
+    if (rotPlane < -30) {
+      setShowHeader(false)
+    } else {
+      setShowHeader(true)
+    }
+
     // move plane to correct position
     const rotations = rotPlane / 90
     const newYPos = START_Y_PLANE + PLANE_VERT_DIST * rotations
@@ -146,13 +156,11 @@ export default function Scene() {
         <Text font={HeaderFont}  fontSize={2}>Welcome</Text>
       </group> */}
 
-      <Html style={{background:"red", width:"50vw", left:"-25vw", top:"-50vh"}} >
-        <p style={{fontSize:50, margin:0}}>test</p>
-      </Html>
-
-      <animated.group position={yPosRocketAnimated} rotation={rotRocketAnimated}>
-        <Rocket />
-      </animated.group>
+      <group ref={rocketObjects}>
+        <animated.group position={yPosRocketAnimated} rotation={rotRocketAnimated}>
+          <Rocket />
+        </animated.group>
+      </group>
 
       <Suspense fallback={null}>
         <animated.group position={yPosPlaneAnimated} rotation={rotPlaneAnimated}>
