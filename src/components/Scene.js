@@ -14,7 +14,7 @@ import HeaderFont from '../fonts/ClarityCity-SemiBold.woff';
 const ORBIT_CONTROLS = false
 
 
-export default function Scene({ setShowHeader }) {
+export default function Scene({ setShowHeader, setShowFooter }) {
 
   const START_Y_ROCKET = -50 // amount the rocket is translated on y at the start
   const END_Y_ROCKET = -1 // final y position of the rocket
@@ -58,20 +58,28 @@ export default function Scene({ setShowHeader }) {
 
 
   useEffect(() => {
+    const rotations = rotPlane / 90
+    const percentageComplete = rotations / planes.length
+
     // show or hide header
-    if (rotPlane < -30) {
+    if (percentageComplete < -0.05) {
       setShowHeader(false)
     } else {
       setShowHeader(true)
     }
 
+    // show or hide footer
+    if (percentageComplete < -0.96) {
+      setShowFooter(true)
+    } else {
+      setShowFooter(false)
+    }
+
     // move plane to correct position
-    const rotations = rotPlane / 90
     const newYPos = START_Y_PLANE + PLANE_VERT_DIST * rotations
     setYPosPlane(newYPos)
 
     // move rocket to correct position
-    const percentageComplete = rotations / planes.length
     const newRocketPos = START_Y_ROCKET + (START_Y_ROCKET-END_Y_ROCKET)*percentageComplete
     setYPosRocket(newRocketPos)
 

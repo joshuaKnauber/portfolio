@@ -31,10 +31,18 @@ body {
 .headerContainer {
   position: fixed;
   left: 0;
+  top: 0;
   width: 100vw;
 }
 
 .footerContainer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+}
+
+.staticFooterContainer {
   position: fixed;
   right: 0;
   bottom: 0;

@@ -12,6 +12,7 @@ import Loading from './components/LoadingScreen';
 import Scene from './components/Scene';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import StaticFooter from './components/StaticFooter';
 import ResizeController from './components/ResizeController';
 
 
@@ -21,10 +22,13 @@ const ORBIT_CONTROLS = false
 export default function App() {
 
   const [showHeader, setShowHeader] = useState(true)
+  const [showFooter, setShowFooter] = useState(true)
 
-  const { headerOpacity, headerTranslate } = useSpring({
+  const { headerOpacity, headerTranslate, footerOpacity, footerTranslate } = useSpring({
     headerOpacity: showHeader ? 1 : 0,
-    headerTranslate: showHeader ? 0 : -100
+    headerTranslate: showHeader ? 0 : -100,
+    footerOpacity: showFooter ? 1 : 0,
+    footerTranslate: showFooter ? 0 : 100
   })
 
 
@@ -50,7 +54,7 @@ export default function App() {
         <ResizeController />
 
         <Suspense fallback={null}>
-          <Scene setShowHeader={setShowHeader} />
+          <Scene setShowHeader={setShowHeader} setShowFooter={setShowFooter} />
           <CameraShake {...shakeConfig} />
         </Suspense>
 
@@ -63,7 +67,11 @@ export default function App() {
         
       </Canvas>
 
-      <Footer/>
+      <animated.div style={{opacity:footerOpacity, top:footerTranslate}} className="footerContainer">
+        <Footer/>
+      </animated.div>
+
+      <StaticFooter/>
     </div>
   );
 }
