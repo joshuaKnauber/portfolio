@@ -14,13 +14,15 @@ const ORBIT_CONTROLS = false
 export default function Scene() {
 
   const START_Y_ROCKET = -50 // amount the rocket is translated on y at the start
+  const END_Y_ROCKET = -1 // final y position of the rocket
   const START_Y_PLANE = 0 // amount the planes are translated on y at the start
 
-  const PLANE_VERT_DIST = -3 // vertical distance between the planes
-  const PLANE_HORIZ_DIST = 3 // horizontal distance between the planes and the center
+  const PLANE_VERT_DIST = -4 // vertical distance between the planes
+  const PLANE_HORIZ_DIST = 3.5 // horizontal distance between the planes and the center
 
   const planes = [
     null,
+    0,
     1,
     2,
     3,
@@ -28,13 +30,6 @@ export default function Scene() {
     5,
     6,
     7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    null
   ]
 
 
@@ -46,7 +41,6 @@ export default function Scene() {
 
 
   const degrees_to_radians = (degrees) => {return degrees * (Math.PI/180)}
-  const mapToRange = (value, x1, y1, x2, y2) => (value - x1) * (y2 - x2) / (y1 - x1) + x2;
 
 
   const { yPosRocketAnimated, yPosPlaneAnimated, rotRocketAnimated, rotPlaneAnimated } = useSpring({
@@ -65,11 +59,11 @@ export default function Scene() {
 
     // move rocket to correct position
     const percentageComplete = rotations / planes.length
-    const newRocketPos = START_Y_ROCKET + START_Y_ROCKET*percentageComplete
+    const newRocketPos = START_Y_ROCKET + (START_Y_ROCKET-END_Y_ROCKET)*percentageComplete
     setYPosRocket(newRocketPos)
 
     // rotate rocket
-    const ROCKET_ROTATIONS = 20
+    const ROCKET_ROTATIONS = 6
     setRotRocket(rot => {
       const newRocketRot = ROCKET_ROTATIONS*90 * percentageComplete
       return newRocketRot
