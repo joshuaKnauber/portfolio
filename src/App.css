@@ -72,3 +72,15 @@ p {
 .pointing {
   cursor: pointer;
 }
+
+.progressContainer {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  width: 30px;
+}
+
+.progress {
+  height: 100%;
+  background-color: white;
+}

@@ -6,6 +6,9 @@ import { Canvas, useFrame, useThree, extend, useLoader } from '@react-three/fibe
 import { OrbitControls, CameraShake, useProgress, Html, MeshDistortMaterial, Sky, Effects } from '@react-three/drei';
 import { EffectComposer, DepthOfField, Noise, Bloom, Vignette, ChromaticAberration } from "@react-three/postprocessing"
 
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+
 import './App.css';
 
 import Loading from './components/LoadingScreen';
@@ -19,16 +22,22 @@ import ResizeController from './components/ResizeController';
 const ORBIT_CONTROLS = false
 
 
+const AnimatedCircularProgress = animated(CircularProgressbar);
+
+
 export default function App() {
 
   const [showHeader, setShowHeader] = useState(true)
   const [showFooter, setShowFooter] = useState(false)
 
-  const { headerOpacity, headerTranslate, footerOpacity, footerTranslate } = useSpring({
+  const [scrollProgress, setScrollProgress] = useState(0)
+
+  const { headerOpacity, headerTranslate, footerOpacity, footerTranslate, animatedScrollProgress } = useSpring({
     headerOpacity: showHeader ? 1 : 0,
     headerTranslate: showHeader ? 0 : -100,
     footerOpacity: showFooter ? 1 : 0,
-    footerTranslate: showFooter ? 0 : -100
+    footerTranslate: showFooter ? 0 : -100,
+    animatedScrollProgress: scrollProgress
   })
 
 
@@ -43,6 +52,7 @@ export default function App() {
     decay: false, // should the intensity decay over time
   }
 
+
   return (
     <div className="App">
       <Canvas colorManagement camera={{position:[0, 0, 0]}}>
@@ -50,7 +60,7 @@ export default function App() {
         <ResizeController />
 
         <Suspense fallback={<Loading/>}>
-          <Scene setShowHeader={setShowHeader} setShowFooter={setShowFooter} />
+          <Scene setShowHeader={setShowHeader} setShowFooter={setShowFooter} setScrollProgress={setScrollProgress} />
           <CameraShake {...shakeConfig} />
         </Suspense>
 
@@ -62,6 +72,19 @@ export default function App() {
         </EffectComposer>
         
       </Canvas>
+
+      {/* <div className="progressContainer">
+        <animated.div className="progress" style={{height:animatedScrollProgress}}></animated.div>
+      </div> */}
+
+      <div className="progressContainer">
+        <AnimatedCircularProgress value={animatedScrollProgress} strokeWidth={10} styles={buildStyles({
+          pathTransitionDuration: 0.1,
+          pathColor: `white`,
+          trailColor: 'transparent',
+          strokeLinecap: 'butt',
+        })} />
+      </div>
       
       <animated.div style={{opacity:headerOpacity, top:headerTranslate}} className="headerContainer">
         <Header/>

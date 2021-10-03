@@ -14,7 +14,7 @@ import HeaderFont from '../fonts/ClarityCity-SemiBold.woff';
 const ORBIT_CONTROLS = false
 
 
-export default function Scene({ setShowHeader, setShowFooter }) {
+export default function Scene({ setShowHeader, setShowFooter, setScrollProgress }) {
 
   // const START_Y_ROCKET = -50 // amount the rocket is translated on y at the start
   const START_Y_ROCKET = -16 // amount the rocket is translated on y at the start
@@ -29,11 +29,7 @@ export default function Scene({ setShowHeader, setShowFooter }) {
     0,
     1,
     2,
-    3,
-    4,
-    5,
-    6,
-    7,
+    3
   ]
 
 
@@ -59,6 +55,9 @@ export default function Scene({ setShowHeader, setShowFooter }) {
   useEffect(() => {
     const rotations = rotPlane / 90
     const percentageComplete = rotations / planes.length
+
+    // set scroll progress indicator
+    setScrollProgress(percentageComplete*-1*100)
 
     // show or hide header
     if (percentageComplete < -0.05) {
