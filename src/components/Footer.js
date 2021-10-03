@@ -3,8 +3,9 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <div className="footerContainer">
+    <>
+      <div style={{width:"100px", height:"200px", background:"white"}}></div>
       <p>Footer</p>
-    </div>
+    </>
   );
 }

@@ -28,7 +28,7 @@ export default function App() {
     headerOpacity: showHeader ? 1 : 0,
     headerTranslate: showHeader ? 0 : -100,
     footerOpacity: showFooter ? 1 : 0,
-    footerTranslate: showFooter ? 0 : 100
+    footerTranslate: showFooter ? 0 : -100
   })
 
 
@@ -67,7 +67,7 @@ export default function App() {
         
       </Canvas>
 
-      <animated.div style={{opacity:footerOpacity, top:footerTranslate}} className="footerContainer">
+      <animated.div style={{opacity:footerOpacity, bottom:footerTranslate}} className="footerContainer">
         <Footer/>
       </animated.div>
 

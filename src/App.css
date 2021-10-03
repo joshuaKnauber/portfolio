@@ -32,25 +32,38 @@ body {
   position: fixed;
   left: 0;
   top: 0;
+  display: flex;
   width: 100vw;
+  justify-content: center;
 }
 
 .footerContainer {
   position: fixed;
   left: 0;
   bottom: 0;
+  display: flex;
   width: 100vw;
+  justify-content: center;
 }
 
 .staticFooterContainer {
   position: fixed;
   right: 0;
   bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
 a {
   color: white;
   text-decoration: none;
+}
+
+p {
+  margin: 0;
+  padding: 0;
 }
 
 .pointing {
