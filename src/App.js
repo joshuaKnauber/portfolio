@@ -49,7 +49,7 @@ export default function App() {
         {ORBIT_CONTROLS && <OrbitControls/>}
         <ResizeController />
 
-        <Suspense fallback={null}>
+        <Suspense fallback={<Loading/>}>
           <Scene setShowHeader={setShowHeader} setShowFooter={setShowFooter} />
           <CameraShake {...shakeConfig} />
         </Suspense>

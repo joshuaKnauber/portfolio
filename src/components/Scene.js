@@ -16,7 +16,8 @@ const ORBIT_CONTROLS = false
 
 export default function Scene({ setShowHeader, setShowFooter }) {
 
-  const START_Y_ROCKET = -50 // amount the rocket is translated on y at the start
+  // const START_Y_ROCKET = -50 // amount the rocket is translated on y at the start
+  const START_Y_ROCKET = -16 // amount the rocket is translated on y at the start
   const END_Y_ROCKET = -1 // final y position of the rocket
   const START_Y_PLANE = 0 // amount the planes are translated on y at the start
 
@@ -41,8 +42,6 @@ export default function Scene({ setShowHeader, setShowFooter }) {
 
   const [rotRocket, setRotRocket] = useState(0)
   const [rotPlane, setRotPlane] = useState(0)
-
-  const rocketObjects = useRef()
 
 
   const degrees_to_radians = (degrees) => {return degrees * (Math.PI/180)}
@@ -166,11 +165,9 @@ export default function Scene({ setShowHeader, setShowFooter }) {
         <Text font={HeaderFont}  fontSize={2}>Welcome</Text>
       </group> */}
 
-      <group ref={rocketObjects}>
-        <animated.group position={yPosRocketAnimated} rotation={rotRocketAnimated}>
-          <Rocket />
-        </animated.group>
-      </group>
+      <animated.group position={yPosRocketAnimated} rotation={rotRocketAnimated}>
+        <Rocket />
+      </animated.group>
 
       <Suspense fallback={null}>
         <animated.group position={yPosPlaneAnimated} rotation={rotPlaneAnimated}>
