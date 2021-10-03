@@ -178,8 +178,8 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
             const factorZ = (Number(index % 4 === 0) * 2 - 1) * (1-isX)
 
             const rotations = rotPlane*-1 / 90
-            const distance = Math.min(1.3, Math.abs(rotations - index))
-            const opacity = mapRange(1.3 - distance, 0, 1.3, 0, 1)
+            const distance = Math.min(1.1, Math.abs(rotations - index))
+            const opacity = mapRange(1.1 - distance, 0, 1.1, 0, 1.25)
 
             return <Plane key={JSON.stringify(data)}
               x={PLANE_HORIZ_DIST * factorX}

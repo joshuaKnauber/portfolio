@@ -4,10 +4,14 @@ import { useSpring, animated } from 'react-spring';
 import * as THREE from "three";
 import { Canvas, useFrame, useThree, extend, useLoader } from '@react-three/fiber';
 import { OrbitControls, CameraShake, useProgress, Html, MeshDistortMaterial, Sky, Effects } from '@react-three/drei';
-import { EffectComposer, DepthOfField, Noise, Bloom, Vignette, ChromaticAberration } from "@react-three/postprocessing"
+import { DepthOfField, Noise, Bloom, Vignette, ChromaticAberration } from "@react-three/postprocessing"
 
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+
+import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
+import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
+import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass";
 
 import './App.css';
 
@@ -18,11 +22,31 @@ import Footer from './components/Footer';
 import StaticFooter from './components/StaticFooter';
 import ResizeController from './components/ResizeController';
 
+extend({ EffectComposer, RenderPass, UnrealBloomPass });
+
 
 const ORBIT_CONTROLS = false
 
 
 const AnimatedCircularProgress = animated(CircularProgressbar);
+
+
+function UnrealBloom({ children }) {
+  const { gl, camera, size } = useThree()
+  const [scene, setScene] = useState()
+  const composer = useRef()
+  useEffect(() => void scene && composer.current.setSize(size.width, size.height), [size])
+  useFrame(() => scene && composer.current.render(), 1)
+  return (
+    <>
+      <scene ref={setScene}>{children}</scene>
+      <effectComposer ref={composer} args={[gl]}>
+        <renderPass attachArray="passes" scene={scene} camera={camera} />
+        <unrealBloomPass attachArray="passes" args={[undefined, 1, 1.3, 0.4]} />
+      </effectComposer>
+    </>
+  )
+}
 
 
 export default function App() {
@@ -60,16 +84,18 @@ export default function App() {
         <ResizeController />
 
         <Suspense fallback={<Loading/>}>
-          <Scene setShowHeader={setShowHeader} setShowFooter={setShowFooter} setScrollProgress={setScrollProgress} />
+          <UnrealBloom>
+            <Scene setShowHeader={setShowHeader} setShowFooter={setShowFooter} setScrollProgress={setScrollProgress} />
+          </UnrealBloom>
           <CameraShake {...shakeConfig} />
         </Suspense>
 
-        <EffectComposer>
+        {/* <EffectComposer> */}
           {/* <DepthOfField focusDistance={0} focalLength={0.03} bokehScale={2} height={480} /> */}
           {/* <Bloom luminanceThreshold={0.8} luminanceSmoothing={0.5} height={500} opacity={1.5} /> */}
           {/* <ChromaticAberration offset={[0.0002, 0.0]}/> */}
-          <Vignette eskil={false} offset={0.4} darkness={0.7} />
-        </EffectComposer>
+          {/* <Vignette eskil={false} offset={0.4} darkness={0.7} /> */}
+        {/* </EffectComposer> */}
         
       </Canvas>
 
