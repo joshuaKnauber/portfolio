@@ -35,7 +35,7 @@ export default function App() {
 
         <Canvas colorManagement camera={{position:[0, 0, 0]}}>
           {ORBIT_CONTROLS && <OrbitControls/>}
-          <CameraShake {...shakeConfig} />
+          {/* <CameraShake {...shakeConfig} /> */}
           <ResizeController />
 
           <Scene />

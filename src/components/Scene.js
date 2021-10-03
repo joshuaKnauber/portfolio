@@ -1,11 +1,13 @@
 import React, { useRef, useState, useEffect, Suspense } from 'react';
 import { useSpring, animated } from '@react-spring/three';
 
-import { Line, Text, MeshWobbleMaterial } from '@react-three/drei';
+import { Line, Text, MeshWobbleMaterial, Html } from '@react-three/drei';
 import * as THREE from "three";
 
 import Rocket from './Rocket';
 import Plane from './Plane';
+
+import HeaderFont from '../fonts/ClarityCity-SemiBold.woff';
 
 
 const ORBIT_CONTROLS = false
@@ -139,6 +141,14 @@ export default function Scene() {
       <ambientLight intensity={0.7}/>
       <directionalLight position={[10, 10, 5]} intensity={2} />
       <directionalLight position={[-10, -10, -5]} intensity={1} />
+
+      {/* <group>
+        <Text font={HeaderFont}  fontSize={2}>Welcome</Text>
+      </group> */}
+
+      <Html style={{background:"red", width:"50vw", left:"-25vw", top:"-50vh"}} >
+        <p style={{fontSize:50, margin:0}}>test</p>
+      </Html>
 
       <animated.group position={yPosRocketAnimated} rotation={rotRocketAnimated}>
         <Rocket />
