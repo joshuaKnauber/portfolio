@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect, Suspense } from 'react';
 import { useSpring, animated } from '@react-spring/three';
 
 import { Line, Text, MeshWobbleMaterial } from '@react-three/drei';
+import * as THREE from "three";
 
 import Rocket from './Rocket';
 import Plane from './Plane';
@@ -45,13 +46,14 @@ export default function Scene() {
 
 
   const degrees_to_radians = (degrees) => {return degrees * (Math.PI/180)}
+  const mapToRange = (value, x1, y1, x2, y2) => (value - x1) * (y2 - x2) / (y1 - x1) + x2;
 
 
   const { yPosRocketAnimated, yPosPlaneAnimated, rotRocketAnimated, rotPlaneAnimated } = useSpring({
     yPosRocketAnimated: [0, yPosRocket, 0],
     yPosPlaneAnimated: [0, yPosPlane, 0],
     rotRocketAnimated: [0, degrees_to_radians(rotRocket), 0],
-    rotPlaneAnimated: [0, degrees_to_radians(rotPlane), 0],
+    rotPlaneAnimated: [0, degrees_to_radians(rotPlane), 0]
   })
 
 
@@ -156,11 +158,16 @@ export default function Scene() {
             const factorX = (Number((index+1) % 4 === 0) * 2 - 1) * isX * -1
             const factorZ = (Number(index % 4 === 0) * 2 - 1) * (1-isX)
 
+            const rotations = rotPlane*-1 / 90
+            const distance = Math.min(1.3, Math.abs(rotations - index))
+            const opacity = 1.3 - distance
+
             return <Plane key={JSON.stringify(data)}
               x={PLANE_HORIZ_DIST * factorX}
               y={PLANE_VERT_DIST * index}
               z={PLANE_HORIZ_DIST * factorZ}
               rot={Math.PI/2 * index}
+              opacity={opacity}
             />
           })}
         </animated.group>
