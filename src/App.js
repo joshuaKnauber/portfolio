@@ -22,7 +22,7 @@ const ORBIT_CONTROLS = false
 export default function App() {
 
   const [showHeader, setShowHeader] = useState(true)
-  const [showFooter, setShowFooter] = useState(true)
+  const [showFooter, setShowFooter] = useState(false)
 
   const { headerOpacity, headerTranslate, footerOpacity, footerTranslate } = useSpring({
     headerOpacity: showHeader ? 1 : 0,
