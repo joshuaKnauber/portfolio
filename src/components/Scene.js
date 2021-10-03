@@ -119,11 +119,13 @@ export default function Scene({ setShowHeader, setShowFooter }) {
   // SCROLL ON DESKTOP
   const onScroll = (evt) => {
     // limit scroll amount to 18 to add up to 90°
-    const scrollAmount = Math.min(18, Math.abs(evt.deltaY)) * evt.deltaY/Math.abs(evt.deltaY)
-
-    const moveAmount = 0
-
-    rotateElements(scrollAmount, moveAmount)
+    if (evt.deltaY) {
+      const scrollAmount = Math.min(18, Math.abs(evt.deltaY)) * evt.deltaY/Math.abs(evt.deltaY)
+  
+      const moveAmount = 0
+  
+      rotateElements(scrollAmount, moveAmount)
+    }
   }
 
 
@@ -133,7 +135,7 @@ export default function Scene({ setShowHeader, setShowFooter }) {
   const onPointerUp = () => pointerStartY = NaN
 
   const onPointerMove = (evt) => {
-    if (!isNaN(pointerStartY)) {
+    if (!isNaN(pointerStartY) && (pointerStartY - evt.pageY !== 0)) {
       const MOBILE_SCROLL_SPEED = 0.5
       rotateElements((pointerStartY - evt.pageY) * MOBILE_SCROLL_SPEED)
       pointerStartY = evt.pageY

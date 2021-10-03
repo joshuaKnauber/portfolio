@@ -45,10 +45,6 @@ export default function App() {
 
   return (
     <div className="App">
-      <animated.div style={{opacity:headerOpacity, top:headerTranslate}} className="headerContainer">
-        <Header/>
-      </animated.div>
-
       <Canvas colorManagement camera={{position:[0, 0, 0]}}>
         {ORBIT_CONTROLS && <OrbitControls/>}
         <ResizeController />
@@ -60,12 +56,16 @@ export default function App() {
 
         <EffectComposer>
           {/* <DepthOfField focusDistance={0} focalLength={0.03} bokehScale={2} height={480} /> */}
-          {/* <Bloom luminanceThreshold={0.8} luminanceSmoothing={0.5} height={500} opacity={1.5} />
-          <ChromaticAberration offset={[0.0005, 0.0]}/>
-          <Vignette eskil={false} offset={0.4} darkness={0.7} /> */}
+          {/* <Bloom luminanceThreshold={0.8} luminanceSmoothing={0.5} height={500} opacity={1.5} /> */}
+          {/* <ChromaticAberration offset={[0.0002, 0.0]}/> */}
+          <Vignette eskil={false} offset={0.4} darkness={0.7} />
         </EffectComposer>
         
       </Canvas>
+      
+      <animated.div style={{opacity:headerOpacity, top:headerTranslate}} className="headerContainer">
+        <Header/>
+      </animated.div>
 
       <animated.div style={{opacity:footerOpacity, bottom:footerTranslate}} className="footerContainer">
         <Footer/>
