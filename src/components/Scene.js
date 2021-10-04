@@ -2,7 +2,8 @@ import React, { useRef, useState, useEffect, Suspense } from 'react';
 import { useSpring, animated } from '@react-spring/three';
 import { useFrame } from '@react-three/fiber';
 
-import { Line, Text, MeshWobbleMaterial, Html } from '@react-three/drei';
+import { DirectionalLightHelper } from 'three';
+import { Line, Text, MeshWobbleMaterial, Html, Sphere, useHelper } from '@react-three/drei';
 import * as THREE from "three";
 
 import Rocket from './Rocket';
@@ -154,11 +155,17 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
     }
   }, [])
 
+  const ref = useRef()
+  useHelper(ref, DirectionalLightHelper, 5)
   return (
     <>
       <ambientLight intensity={0.7}/>
-      <directionalLight position={[10, 10, 5]} intensity={2} />
-      <directionalLight position={[-10, -10, -5]} intensity={1} />
+      {/* <directionalLight position={[10, 10, 3]}  intensity={2} ref={ref} /> */}
+      <pointLight position={[10, 10, 5]} color={0xffffff} intensity={1} />
+      <pointLight position={[-10, -10, -5]} color={0xffffff} intensity={1} />
+      {/* <directionalLight position={[-10, -10, -5]} intensity={1} /> */}
+      {/* <Sphere position={[10,10,10]}/> */}
+      {/* <Sphere position={[-10,-10,-5]}/> */}
 
       {/* <group>
         <Text font={HeaderFont}  fontSize={2}>Welcome</Text>

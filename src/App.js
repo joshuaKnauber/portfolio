@@ -21,6 +21,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import StaticFooter from './components/StaticFooter';
 import ResizeController from './components/ResizeController';
+import UnrealBloom from './components/UnrealBloom';
 
 extend({ EffectComposer, RenderPass, UnrealBloomPass });
 
@@ -29,24 +30,6 @@ const ORBIT_CONTROLS = false
 
 
 const AnimatedCircularProgress = animated(CircularProgressbar);
-
-
-function UnrealBloom({ children }) {
-  const { gl, camera, size } = useThree()
-  const [scene, setScene] = useState()
-  const composer = useRef()
-  useEffect(() => void scene && composer.current.setSize(size.width, size.height), [size])
-  useFrame(() => scene && composer.current.render(), 1)
-  return (
-    <>
-      <scene ref={setScene}>{children}</scene>
-      <effectComposer ref={composer} args={[gl]}>
-        <renderPass attachArray="passes" scene={scene} camera={camera} />
-        <unrealBloomPass attachArray="passes" args={[undefined, 1, 1.3, 0.4]} />
-      </effectComposer>
-    </>
-  )
-}
 
 
 export default function App() {
