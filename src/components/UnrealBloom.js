@@ -22,13 +22,13 @@ export default function UnrealBloom({ children }) {
       <scene ref={setScene}>{children}</scene>
       <effectComposer ref={composer} args={[gl]}>
         <renderPass attachArray="passes" scene={scene} camera={camera} />
-        <unrealBloomPass attachArray="passes" args={[undefined, 0.6, 0.7, 0.3]} />
         <shaderPass
           attachArray="passes"
           args={[FXAAShader]}
           material-uniforms-resolution-value={[1 / size.width, 1 / size.height]}
           renderToScreen
         />
+        <unrealBloomPass attachArray="passes" args={[undefined, 0.6, 0.7, 0.3]} />
       </effectComposer>
     </>
   )
