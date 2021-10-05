@@ -5,8 +5,10 @@ import { useFrame, useThree, extend } from '@react-three/fiber';
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass";
+import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass'
+import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader'
 
-extend({ EffectComposer, RenderPass, UnrealBloomPass });
+extend({ EffectComposer, ShaderPass, RenderPass, UnrealBloomPass })
 
 
 export default function UnrealBloom({ children }) {
@@ -20,7 +22,13 @@ export default function UnrealBloom({ children }) {
       <scene ref={setScene}>{children}</scene>
       <effectComposer ref={composer} args={[gl]}>
         <renderPass attachArray="passes" scene={scene} camera={camera} />
-        <unrealBloomPass attachArray="passes" args={[undefined, 0.6, 1.1, 0.1]} />
+        <unrealBloomPass attachArray="passes" args={[undefined, 0.6, 0.7, 0.3]} />
+        <shaderPass
+          attachArray="passes"
+          args={[FXAAShader]}
+          material-uniforms-resolution-value={[1 / size.width, 1 / size.height]}
+          renderToScreen
+        />
       </effectComposer>
     </>
   )
