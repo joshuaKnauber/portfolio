@@ -27,10 +27,14 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
 
   const planes = [
     null,
+    null,
     0,
     1,
     2,
-    3
+    3,
+    4,
+    5,
+    6
   ]
 
 
@@ -160,16 +164,8 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
   return (
     <>
       <ambientLight intensity={0.7}/>
-      {/* <directionalLight position={[10, 10, 3]}  intensity={2} ref={ref} /> */}
       <pointLight position={[10, 10, 5]} color={0xffffff} intensity={1} />
       <pointLight position={[-10, -10, -5]} color={0xffffff} intensity={1} />
-      {/* <directionalLight position={[-10, -10, -5]} intensity={1} /> */}
-      {/* <Sphere position={[10,10,10]}/> */}
-      {/* <Sphere position={[-10,-10,-5]}/> */}
-
-      {/* <group>
-        <Text font={HeaderFont}  fontSize={2}>Welcome</Text>
-      </group> */}
 
       <animated.group position={yPosRocketAnimated} rotation={rotRocketAnimated}>
         <Rocket />

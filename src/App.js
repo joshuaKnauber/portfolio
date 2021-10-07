@@ -39,9 +39,10 @@ export default function App() {
 
   const [scrollProgress, setScrollProgress] = useState(0)
 
-  const { headerOpacity, headerTranslate, footerOpacity, footerTranslate, animatedScrollProgress } = useSpring({
+  const { headerOpacity, headerClass, staticFooterOpacity, footerOpacity, footerTranslate, animatedScrollProgress } = useSpring({
     headerOpacity: showHeader ? 1 : 0,
-    headerTranslate: showHeader ? 0 : -100,
+    staticFooterOpacity: showHeader ? 0 : 1,
+    headerClass: showHeader ? "headerContainer" : "headerContainer scaledDown",
     footerOpacity: showFooter ? 1 : 0,
     footerTranslate: showFooter ? 0 : -100,
     animatedScrollProgress: scrollProgress
@@ -73,29 +74,18 @@ export default function App() {
           <CameraShake {...shakeConfig} />
         </Suspense>
 
-        {/* <EffectComposer> */}
-          {/* <DepthOfField focusDistance={0} focalLength={0.03} bokehScale={2} height={480} /> */}
-          {/* <Bloom luminanceThreshold={0.8} luminanceSmoothing={0.5} height={500} opacity={1.5} /> */}
-          {/* <ChromaticAberration offset={[0.0002, 0.0]}/> */}
-          {/* <Vignette eskil={false} offset={0.4} darkness={0.7} /> */}
-        {/* </EffectComposer> */}
-        
       </Canvas>
 
-      {/* <div className="progressContainer">
-        <animated.div className="progress" style={{height:animatedScrollProgress}}></animated.div>
-      </div> */}
-
-      <div className="progressContainer">
+      <animated.div className="progressContainer" style={{opacity:staticFooterOpacity}}>
         <AnimatedCircularProgress value={animatedScrollProgress} strokeWidth={10} styles={buildStyles({
           pathTransitionDuration: 0.1,
           pathColor: `white`,
           trailColor: 'transparent',
           strokeLinecap: 'butt',
         })} />
-      </div>
+      </animated.div>
       
-      <animated.div style={{opacity:headerOpacity, top:headerTranslate}} className="headerContainer">
+      <animated.div style={{opacity:headerOpacity}} className={headerClass}>
         <Header/>
       </animated.div>
 
@@ -103,7 +93,9 @@ export default function App() {
         <Footer/>
       </animated.div>
 
-      <StaticFooter/>
+      <animated.div style={{opacity:staticFooterOpacity}}>
+        <StaticFooter/>
+      </animated.div>
     </div>
   );
 }

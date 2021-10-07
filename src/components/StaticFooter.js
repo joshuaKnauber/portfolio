@@ -1,10 +1,13 @@
 import React from "react";
+import { FaEnvelope } from 'react-icons/fa';
 
 
 export default function StaticFooter() {
   return (
     <div className="staticFooterContainer">
-      <p>Footer</p>
+      <div className="iconContainer">
+        <FaEnvelope size={16} />
+      </div>
     </div>
   );
 }

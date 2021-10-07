@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@500;600&display=swap');
+
 @font-face {
   font-family: 'ClarityCity';
   font-weight: 400;
@@ -9,6 +11,7 @@
   font-weight: 500;
   src: local('ClarityCity'), url(./fonts/ClarityCity-SemiBold.woff) format('woff');
 }
+
 
 body {
   margin: 0px;
@@ -38,6 +41,9 @@ canvas {
   display: flex;
   width: 100vw;
   justify-content: center;
+  pointer-events: none;
+  transform-origin: top center;
+  transition: transform 0.4s;
 }
 
 .footerContainer {
@@ -78,9 +84,30 @@ p {
   left: 20px;
   bottom: 20px;
   width: 30px;
+  margin: 5px;
 }
 
 .progress {
   height: 100%;
   background-color: white;
+}
+
+.iconContainer {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1.5px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: black;
+  transition: filter 0.15s;
+}
+.iconContainer:hover {
+  filter: invert();
+}
+
+.scaledDown {
+  transform: scale(0);
 }
