@@ -15,14 +15,14 @@ export default function Console() {
 
   const messages = [
     [["Hi! I'm Joshua", "typed"]],
-    [["I love designing", "typed"], ["unique but usable solutions", "highlighted"], ["that help people", "typed"]],
+    [["I love", "typed"], ["solving hard problems", "highlighted"], ["with", "typed"], ["unique & usable solutions", "highlighted"]],
     [["", "typed"]],
-    [["I'm currently studying", "typed"], ["Interaction Design at CODE University", "https://www.code.berlin/en/study/interaction-design/"], ["in Berlin", "typed"]],
-    [["I work on UI, UX, frontend programming and also do some 3D art", "typed"]],
+    [["--> I'm currently studying", "typed"], ["Interaction Design at CODE University", "https://www.code.berlin/en/study/interaction-design/"], ["in Berlin", "typed"]],
+    [["--> I work on", "typed"], ["UI, UX, frontend programming","special"], ["and also do some", "typed"], ["3D art","special"]],
+    [["--> I'm interested in all areas from music to space to everything that impacts our future 🚀", "typed"]],
     [[" ", "typed"]],
-    [["  ", "typed"]],
-    [["▼ Scroll down ▼", "highlighted"], ["to see some of my projects and some of the things I like", "typed"]],
-    [["[E-Mail]", "link"], ["Twitter", "https://twitter.com/joshuaKnauber"], ["Artstation", "https://joshuaknauber.artstation.com/"]],
+    [["▼ Scroll down ▼", "highlighted"], ["to see some of my projects", "typed"]],
+    [["Contact:","typed"], ["[E-Mail]", "link"], ["Twitter", "https://twitter.com/joshuaKnauber"], ["Artstation", "https://joshuaknauber.artstation.com/"]],
   ]
   const [messageIndex, setMessageIndex] = useState(0);
 

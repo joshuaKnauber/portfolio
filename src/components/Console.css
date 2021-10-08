@@ -33,7 +33,7 @@
     width: calc(100% - 60px);
     flex: 1;
     padding: 30px;
-    padding-top: 10px;
+    padding-top: 20px;
     font-family: 'Noto Sans Mono';
     font-size: 16px;
     color: rgb(158, 158, 158);
@@ -43,7 +43,7 @@
 .consoleLine {
     display: flex;
     flex-direction: row;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .consoleLine span {
@@ -60,9 +60,8 @@
 }
 
 .special {
-    color: rgb(221, 221, 221);
+    color: rgb(71, 197, 128);
     font-weight: 600;
-    font-style: italic;
 }
 
 .consoleLine a, .link {
