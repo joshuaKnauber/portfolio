@@ -46,8 +46,8 @@
     margin-bottom: 10px;
 }
 
-.consoleLine span {
-    white-space: pre-wrap;
+.Typist  {
+    word-break: break-all;
 }
 
 .typed {

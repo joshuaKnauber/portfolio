@@ -14,13 +14,14 @@ export default function Console() {
   const [copiedEmail, setCopiedEmail] = useState(false)
 
   const messages = [
+    [["", "typed"]],
     [["Hi! I'm Joshua", "typed"]],
     [["I love", "typed"], ["solving hard problems", "highlighted"], ["with", "typed"], ["unique & usable solutions", "highlighted"]],
-    [["", "typed"]],
+    [[" ", "typed"]],
     [["--> I'm currently studying", "typed"], ["Interaction Design at CODE University", "https://www.code.berlin/en/study/interaction-design/"], ["in Berlin", "typed"]],
     [["--> I work on", "typed"], ["UI, UX, frontend programming","special"], ["and also do some", "typed"], ["3D art","special"]],
     [["--> I'm interested in all areas from music to space to everything that impacts our future 🚀", "typed"]],
-    [[" ", "typed"]],
+    [["  ", "typed"]],
     [["▼ Scroll down ▼", "highlighted"], ["to see some of my projects", "typed"]],
     [["Contact:","typed"], ["[E-Mail]", "link"], ["Twitter", "https://twitter.com/joshuaKnauber"], ["Artstation", "https://joshuaknauber.artstation.com/"]],
   ]
@@ -60,17 +61,19 @@ export default function Console() {
         </div>
         <div className="consoleContent" ref={consoleContent}>
 
-            {!clearFirstLines && <>
+            {true && <>
               <div className="consoleLine">
-                <span>C:\Users\joshua{'>'}&nbsp;</span>
+                <span>\\joshua{'>'}&nbsp;</span>
                 <Typist startDelay={600} onTypingDone={()=>setShowLineTwo(true)}
+                  avgTypingDelay={60} stdTypingDelay={15}
                   cursor={{blink:true, hideWhenDone:true, hideWhenDoneDelay:0}}>
-                  <span className="typed">cd Desktop</span>
+                  <span className="typed">cd portfolio</span>
                 </Typist>
               </div>
               {showLineTwo && <div className="consoleLine">
-                  <span>C:\Users\joshua\Desktop{'>'}&nbsp;</span>
-                  <Typist startDelay={600} onTypingDone={()=>setTimeout(() => setClearFirstLines(true), 500)}
+                  <span>\\joshua\portfolio{'>'}&nbsp;</span>
+                  <Typist startDelay={400} onTypingDone={()=>setTimeout(() => setClearFirstLines(true), 500)}
+                    avgTypingDelay={60} stdTypingDelay={15}
                     cursor={{blink:true, hideWhenDone:true, hideWhenDoneDelay:0}}>
                     <span className="typed">python3 init.py</span>
                   </Typist>
