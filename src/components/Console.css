@@ -46,6 +46,10 @@
     margin-bottom: 8px;
 }
 
+.consoleLine span {
+    white-space: pre-wrap;
+}
+
 .typed {
     color: rgb(221, 221, 221);
 }

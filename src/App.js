@@ -39,7 +39,7 @@ export default function App() {
 
   const [scrollProgress, setScrollProgress] = useState(0)
 
-  const { headerOpacity, headerClass, staticFooterOpacity, footerOpacity, footerTranslate, animatedScrollProgress } = useSpring({
+  const { headerOpacity, staticFooterOpacity, footerOpacity, footerTranslate, animatedScrollProgress } = useSpring({
     headerOpacity: showHeader ? 1 : 0,
     staticFooterOpacity: showHeader ? 0 : 1,
     footerOpacity: showFooter ? 1 : 0,
@@ -74,7 +74,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <Canvas colorManagement camera={{position:[0, 0, 0]}}>
+      <Canvas colorManagement camera={{position:[0, 0, 0]}} gl={{ antialias: false, alpha: false }}>
         {ORBIT_CONTROLS && <OrbitControls/>}
         <ResizeController />
 
