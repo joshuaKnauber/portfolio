@@ -60,6 +60,7 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
   useEffect(() => {
     const rotations = rotPlane / 90
     const percentageComplete = rotations / planes.length
+    console.log("percentage", percentageComplete)
 
     // set scroll progress indicator
     setScrollProgress(percentageComplete*-1*100)
@@ -119,6 +120,18 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
   }
 
 
+  // SCROLL BAR
+  const onBodyScroll = (evt) => {
+    let newRot = -planes.length*90 * window.scrollY/(document.body.scrollHeight-window.innerHeight)
+
+    // if close to multiple of 90 and scrolling in right direction
+    const nextMultiple = 90*Math.round(newRot/90)
+    console.log(nextMultiple)
+
+    setRotPlane(nextMultiple)
+  }
+
+
   // SCROLL ON DESKTOP
   const onScroll = (evt) => {
     // limit scroll amount to 18 to add up to 90°
@@ -146,16 +159,18 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
   }
 
   useEffect(() => {
-    document.body.addEventListener("wheel", onScroll)
-    document.body.addEventListener("pointerdown", onPointerDown)
-    document.body.addEventListener("pointerup", onPointerUp)
-    document.body.addEventListener("pointermove", onPointerMove)
-
+    // document.body.addEventListener("wheel", onScroll)
+    // document.body.addEventListener("pointerdown", onPointerDown)
+    // document.body.addEventListener("pointerup", onPointerUp)
+    // document.body.addEventListener("pointermove", onPointerMove)
+    window.addEventListener("scroll", onBodyScroll)
+    
     return () => {
-      document.body.removeEventListener("wheel", onScroll)
-      document.body.removeEventListener("pointerdown", onPointerDown)
-      document.body.removeEventListener("pointerup", onPointerUp)
-      document.body.removeEventListener("pointermove", onPointerMove)
+      // document.body.removeEventListener("wheel", onScroll)
+      // document.body.removeEventListener("pointerdown", onPointerDown)
+      // document.body.removeEventListener("pointerup", onPointerUp)
+      // document.body.removeEventListener("pointermove", onPointerMove)
+      window.removeEventListener("scroll", onBodyScroll)
     }
   }, [])
 

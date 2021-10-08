@@ -42,11 +42,20 @@ export default function App() {
   const { headerOpacity, headerClass, staticFooterOpacity, footerOpacity, footerTranslate, animatedScrollProgress } = useSpring({
     headerOpacity: showHeader ? 1 : 0,
     staticFooterOpacity: showHeader ? 0 : 1,
-    headerClass: showHeader ? "headerContainer" : "headerContainer scaledDown",
     footerOpacity: showFooter ? 1 : 0,
     footerTranslate: showFooter ? 0 : -100,
     animatedScrollProgress: scrollProgress
   })
+
+  useEffect(() => {
+    if (headerRef.current) {
+      if (showHeader) {
+        headerRef.current.className = "headerContainer"
+      } else {
+        headerRef.current.className = "headerContainer scaledDown"
+      }
+    }
+  }, [showHeader])
 
 
   const shakeConfig = {
@@ -59,6 +68,8 @@ export default function App() {
     intensity: 1, // initial intensity of the shake
     decay: false, // should the intensity decay over time
   }
+
+  const headerRef = useRef()
 
 
   return (
@@ -85,7 +96,7 @@ export default function App() {
         })} />
       </animated.div>
       
-      <animated.div style={{opacity:headerOpacity}} className={headerClass}>
+      <animated.div style={{opacity:headerOpacity}} className={"headerContainer"} ref={headerRef}>
         <Header/>
       </animated.div>
 
