@@ -159,18 +159,18 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
   }
 
   useEffect(() => {
-    // document.body.addEventListener("wheel", onScroll)
-    // document.body.addEventListener("pointerdown", onPointerDown)
-    // document.body.addEventListener("pointerup", onPointerUp)
-    // document.body.addEventListener("pointermove", onPointerMove)
-    window.addEventListener("scroll", onBodyScroll)
+    document.body.addEventListener("wheel", onScroll)
+    document.body.addEventListener("pointerdown", onPointerDown)
+    document.body.addEventListener("pointerup", onPointerUp)
+    document.body.addEventListener("pointermove", onPointerMove)
+    // window.addEventListener("scroll", onBodyScroll)
     
     return () => {
-      // document.body.removeEventListener("wheel", onScroll)
-      // document.body.removeEventListener("pointerdown", onPointerDown)
-      // document.body.removeEventListener("pointerup", onPointerUp)
-      // document.body.removeEventListener("pointermove", onPointerMove)
-      window.removeEventListener("scroll", onBodyScroll)
+      document.body.removeEventListener("wheel", onScroll)
+      document.body.removeEventListener("pointerdown", onPointerDown)
+      document.body.removeEventListener("pointerup", onPointerUp)
+      document.body.removeEventListener("pointermove", onPointerMove)
+      // window.removeEventListener("scroll", onBodyScroll)
     }
   }, [])
 

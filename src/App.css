@@ -19,7 +19,7 @@ body {
   color: white;
   background-color: black;
   font-family: "ClarityCity";
-  height: 5500px;
+  /* height: 5500px; */
 }
 
 .App {
@@ -45,6 +45,7 @@ canvas {
   top: 0;
   display: flex;
   width: 100vw;
+  height: 100%;
   justify-content: center;
   pointer-events: none;
   transform-origin: top center;
