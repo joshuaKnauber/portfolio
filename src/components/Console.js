@@ -23,7 +23,7 @@ export default function Console() {
     [["-> I'm interested in (working on) all topics from music to space to everything that impacts our future 🚀", "typed"]],
     [["  ", "typed"]],
     [["▼ Scroll down ▼", "highlighted"], ["to see some of my projects", "typed"]],
-    [["Contact:","typed"], ["[E-Mail]", "link"], ["Twitter", "https://twitter.com/joshuaKnauber"], ["Artstation", "https://joshuaknauber.artstation.com/"]],
+    [["[E-Mail]", "link"], ["Twitter", "https://twitter.com/joshuaKnauber"], ["Artstation", "https://joshuaknauber.artstation.com/"], ["LinkedIn", "https://www.linkedin.com/in/joshua-knauber-410b31221/"]],
   ]
   const [messageIndex, setMessageIndex] = useState(0);
 

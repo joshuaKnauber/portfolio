@@ -1,11 +1,12 @@
 import React from "react";
 
+import "./Footer.css";
+
 
 export default function Footer() {
   return (
     <>
-      <div style={{width:"100px", height:"200px", background:"white"}}></div>
-      <p>Footer</p>
+      <p className="footerText">View this sites source code <a href="https://github.com/joshuaKnauber/portfolio" target="_blank">here</a> ❤️</p>
     </>
   );
 }

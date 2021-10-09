@@ -34,12 +34,13 @@ export default function App() {
 
   const [scrollProgress, setScrollProgress] = useState(0)
 
-  const { headerOpacity, staticFooterOpacity, footerOpacity, footerTranslate, animatedScrollProgress } = useSpring({
+  const { headerOpacity, staticFooterOpacity, footerOpacity, footerTranslate, animatedScrollProgress, handTransform } = useSpring({
     headerOpacity: showHeader ? 1 : 0,
     staticFooterOpacity: showHeader ? 0 : 1,
     footerOpacity: showFooter ? 1 : 0,
     footerTranslate: showFooter ? 0 : -100,
-    animatedScrollProgress: scrollProgress
+    animatedScrollProgress: scrollProgress,
+    handTransform: `rotate(${scrollProgress}deg)`
   })
 
   useEffect(() => {
@@ -81,16 +82,14 @@ export default function App() {
           <CameraShake {...shakeConfig} />
         </Suspense>
 
-        {/* <color attach="background" args={"red"} /> */}
-
         <EffectComposer>
           <Bloom luminanceThreshold={0.1} luminanceSmoothing={0.6} height={40} intensity={0.09} />
           <Bloom luminanceThreshold={0.4} luminanceSmoothing={0.8} height={500} intensity={0.25} />
           <Vignette eskil={false} offset={0.1} darkness={0.7} />
-          {/* <ChromaticAberration
+          <ChromaticAberration
             blendFunction={BlendFunction.NORMAL}
-            offset={[0.001, 0.0001]}
-          /> */}
+            offset={[0.0006, 0.00006]}
+          />
         </EffectComposer>
 
       </Canvas>
