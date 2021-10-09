@@ -60,7 +60,6 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
   useEffect(() => {
     const rotations = rotPlane / 90
     const percentageComplete = rotations / planes.length
-    console.log("percentage", percentageComplete)
 
     // set scroll progress indicator
     setScrollProgress(percentageComplete*-1*100)

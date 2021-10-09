@@ -3,15 +3,12 @@ import { useSpring, animated } from 'react-spring';
 
 import * as THREE from "three";
 import { Canvas, useFrame, useThree, extend, useLoader } from '@react-three/fiber';
-import { OrbitControls, CameraShake, useProgress, Html, MeshDistortMaterial, Sky, Effects } from '@react-three/drei';
-import { DepthOfField, Noise, Bloom, Vignette, ChromaticAberration } from "@react-three/postprocessing"
+import { OrbitControls, CameraShake } from '@react-three/drei';
+import { EffectComposer, DepthOfField, Bloom, Noise, Vignette, SMAA, ChromaticAberration } from '@react-three/postprocessing'
+import { BlendFunction } from 'postprocessing'
 
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-
-import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
-import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
-import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass";
 
 import './App.css';
 
@@ -22,8 +19,6 @@ import Footer from './components/Footer';
 import StaticFooter from './components/StaticFooter';
 import ResizeController from './components/ResizeController';
 import UnrealBloom from './components/UnrealBloom';
-
-extend({ EffectComposer, RenderPass, UnrealBloomPass });
 
 
 const ORBIT_CONTROLS = false
@@ -72,19 +67,31 @@ export default function App() {
   const headerRef = useRef()
 
 
-  return (
+  return ( // gl={{ antialias: true, alpha: false }}
     <div className="App">
-      <Canvas colorManagement camera={{position:[0, 0, 0]}} gl={{ antialias: false, alpha: false }}>
+      <Canvas colorManagement camera={{position:[0, 0, 0]}}>
         {ORBIT_CONTROLS && <OrbitControls/>}
         <ResizeController />
 
         {/* TODO: Loading is in front of console */}
         <Suspense fallback={<Loading/>}>
-          <UnrealBloom>
+          {/* <UnrealBloom> */}
             <Scene setShowHeader={setShowHeader} setShowFooter={setShowFooter} setScrollProgress={setScrollProgress} />
-          </UnrealBloom>
+          {/* </UnrealBloom> */}
           <CameraShake {...shakeConfig} />
         </Suspense>
+
+        {/* <color attach="background" args={"red"} /> */}
+
+        <EffectComposer>
+          <Bloom luminanceThreshold={0.1} luminanceSmoothing={0.6} height={40} intensity={0.09} />
+          <Bloom luminanceThreshold={0.4} luminanceSmoothing={0.8} height={500} intensity={0.25} />
+          <Vignette eskil={false} offset={0.1} darkness={0.7} />
+          <ChromaticAberration
+            blendFunction={BlendFunction.NORMAL}
+            offset={[0.001, 0.0001]}
+          />
+        </EffectComposer>
 
       </Canvas>
 

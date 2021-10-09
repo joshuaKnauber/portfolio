@@ -7,28 +7,30 @@ import * as THREE from "three";
 import { useGLTF, useTexture } from '@react-three/drei'
 
 // import StageOne from '../assets/rocket/rocket.gltf';
-import StageOne from '../assets/rocket/test.gltf';
+// import Cubes from '../assets/rocket/test.gltf';
+import Cubes from '../assets/rocket/testMaps.gltf';
 
-import StageOneColor from '../assets/rocket/stage-one-color.png';
-import StageOneMetalness from '../assets/rocket/stage-one-metalness.png';
-import StageOneRoughness from '../assets/rocket/stage-one-roughness.png';
-import StageOneAO from '../assets/rocket/stage-one-ao.png';
-import StageOneNormal from '../assets/rocket/stage-one-normal.png';
+import emission from '../assets/rocket/emit.jpg';
+import diffuse from '../assets/rocket/diffuse.jpg';
 
 
 
 export default function Rocket() {
-  // const { nodes } = useGLTF(StageOne)
-  // const color = useTexture(StageOneColor)
+  // const { nodes } = useGLTF(Cubes)
+  const { scene } = useLoader(GLTFLoader, Cubes)
 
-  const { scene } = useLoader(GLTFLoader, StageOne)
+  // const { nodes } = useLoader(GLTFLoader, Cubes)
+  const color = useTexture(diffuse)
+  const emit = useTexture(emission)
+
+  
 
   return (
-    <primitive object={ scene } />
-  )
+    <primitive object={ scene } ma />
+  );
 
   // return (
-  //   <mesh geometry={nodes.Cube.geometry} rotation={[0, 1, 0]}>
+  //   <mesh geometry={nodes.Cube.geometry}>
   //     {/* <meshStandardMaterial 
   //       map={color}
   //       metalnessMap={metalness} 
@@ -36,7 +38,7 @@ export default function Rocket() {
   //       normalMap={normal} 
   //       aoMap={ao}
   //       map-flipY={false} /> */}
-  //       <meshPhongMaterial color="red"/>
+  //       {/* <meshPhongMaterial color="red"/> */}
   //   </mesh>
-  // )
+  // );
 }
