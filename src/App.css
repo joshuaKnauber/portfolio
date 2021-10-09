@@ -50,10 +50,11 @@ canvas {
   pointer-events: none;
   transform-origin: top center;
   transform: scale(1);
-  transition: transform 0.4s;
+  transition: transform 0.5s;
 }
 
 .scaledDown {
+  transform-origin: bottom center;
   transform: scale(0);
 }
 

@@ -87,10 +87,10 @@ export default function App() {
           <Bloom luminanceThreshold={0.1} luminanceSmoothing={0.6} height={40} intensity={0.09} />
           <Bloom luminanceThreshold={0.4} luminanceSmoothing={0.8} height={500} intensity={0.25} />
           <Vignette eskil={false} offset={0.1} darkness={0.7} />
-          <ChromaticAberration
+          {/* <ChromaticAberration
             blendFunction={BlendFunction.NORMAL}
             offset={[0.001, 0.0001]}
-          />
+          /> */}
         </EffectComposer>
 
       </Canvas>

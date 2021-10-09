@@ -18,9 +18,9 @@ export default function Console() {
     [["Hi! I'm Joshua", "typed"]],
     [["I love", "typed"], ["solving hard problems", "highlighted"], ["with", "typed"], ["unique & usable solutions", "highlighted"]],
     [[" ", "typed"]],
-    [["--> I'm currently studying", "typed"], ["Interaction Design at CODE University", "https://www.code.berlin/en/study/interaction-design/"], ["in Berlin", "typed"]],
-    [["--> I work on", "typed"], ["UI, UX, frontend programming","special"], ["and also do some", "typed"], ["3D art","special"]],
-    [["--> I'm interested in all areas from music to space to everything that impacts our future 🚀", "typed"]],
+    [["-> I'm currently studying", "typed"], ["Interaction Design at CODE University", "https://www.code.berlin/en/study/interaction-design/"], ["in Berlin", "typed"]],
+    [["-> I work with", "typed"], ["UI, UX, frontend programming","special"], ["and some", "typed"], ["3D art","special"]],
+    [["-> I'm interested in (working on) all topics from music to space to everything that impacts our future 🚀", "typed"]],
     [["  ", "typed"]],
     [["▼ Scroll down ▼", "highlighted"], ["to see some of my projects", "typed"]],
     [["Contact:","typed"], ["[E-Mail]", "link"], ["Twitter", "https://twitter.com/joshuaKnauber"], ["Artstation", "https://joshuaknauber.artstation.com/"]],
@@ -34,7 +34,7 @@ export default function Console() {
 
     let timeout;
     if (messageIndex < messages.length - 1) {
-      timeout = setTimeout(() => setMessageIndex(messageIndex + 1), 1000);
+      timeout = setTimeout(() => setMessageIndex(messageIndex + 1), 500);
     }
 
     return () => {
@@ -64,16 +64,16 @@ export default function Console() {
             {true && <>
               <div className="consoleLine">
                 <span>\\joshua{'>'}&nbsp;</span>
-                <Typist startDelay={600} onTypingDone={()=>setShowLineTwo(true)}
-                  avgTypingDelay={60} stdTypingDelay={15}
+                <Typist startDelay={400} onTypingDone={()=>setShowLineTwo(true)}
+                  avgTypingDelay={50} stdTypingDelay={12}
                   cursor={{blink:true, hideWhenDone:true, hideWhenDoneDelay:0}}>
                   <span className="typed">cd portfolio</span>
                 </Typist>
               </div>
               {showLineTwo && <div className="consoleLine">
                   <span>\\joshua\portfolio{'>'}&nbsp;</span>
-                  <Typist startDelay={400} onTypingDone={()=>setTimeout(() => setClearFirstLines(true), 500)}
-                    avgTypingDelay={60} stdTypingDelay={15}
+                  <Typist startDelay={300} onTypingDone={()=>setTimeout(() => setClearFirstLines(true), 500)}
+                    avgTypingDelay={50} stdTypingDelay={12}
                     cursor={{blink:true, hideWhenDone:true, hideWhenDoneDelay:0}}>
                     <span className="typed">python3 init.py</span>
                   </Typist>
@@ -84,7 +84,7 @@ export default function Console() {
               {messages.filter((_, index) => {return index <= messageIndex}).map(msg =>
                 <div className="consoleLine" key={JSON.stringify(msg)}>
                   <span>{'>>>'}&nbsp;&nbsp;</span>
-                  <Typist startDelay={0} avgTypingDelay={2} stdTypingDelay={2}
+                  <Typist startDelay={0} avgTypingDelay={1} stdTypingDelay={1}
                     cursor={{show: false}}>
                     {msg.map(text => {
                       if (text[1].includes("http")) {
