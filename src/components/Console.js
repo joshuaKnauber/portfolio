@@ -19,7 +19,7 @@ export default function Console() {
     [["I love", "typed"], ["solving hard problems", "highlighted"], ["with", "typed"], ["unique & usable solutions", "highlighted"]],
     [[" ", "typed"]],
     [["-> I'm currently studying", "typed"], ["Interaction Design at CODE University", "https://www.code.berlin/en/study/interaction-design/"], ["in Berlin", "typed"]],
-    [["-> I work with", "typed"], ["UI, UX, frontend programming","special"], ["and some", "typed"], ["3D art","special"]],
+    [["-> I work on", "typed"], ["UI, UX, frontend programming","special"], ["and some", "typed"], ["3D art","special"]],
     [["-> I'm interested in (working on) all topics from music to space to everything that impacts our future 🚀", "typed"]],
     [["  ", "typed"]],
     [["▼ Scroll down ▼", "highlighted"], ["to see some of my projects", "typed"]],

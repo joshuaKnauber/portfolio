@@ -25,6 +25,7 @@ const ORBIT_CONTROLS = false
 
 
 const AnimatedCircularProgress = animated(CircularProgressbar);
+const AnimatedStaticFooter = animated(StaticFooter);
 
 
 export default function App() {
@@ -34,13 +35,13 @@ export default function App() {
 
   const [scrollProgress, setScrollProgress] = useState(0)
 
-  const { headerOpacity, staticFooterOpacity, footerOpacity, footerTranslate, animatedScrollProgress, handTransform } = useSpring({
+  const { headerOpacity, staticFooterOpacity, footerOpacity, footerTranslate, animatedScrollProgress, animatedIconsWidth } = useSpring({
     headerOpacity: showHeader ? 1 : 0,
     staticFooterOpacity: showHeader ? 0 : 1,
     footerOpacity: showFooter ? 1 : 0,
     footerTranslate: showFooter ? 0 : -100,
     animatedScrollProgress: scrollProgress,
-    handTransform: `rotate(${scrollProgress}deg)`
+    animatedIconsWidth: showFooter ? "150px" : "0px"
   })
 
   useEffect(() => {
@@ -112,7 +113,7 @@ export default function App() {
       </animated.div>
 
       <animated.div style={{opacity:staticFooterOpacity}}>
-        <StaticFooter/>
+        <AnimatedStaticFooter width={animatedIconsWidth}/>
       </animated.div>
     </div>
   );

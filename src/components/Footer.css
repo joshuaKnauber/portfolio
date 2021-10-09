@@ -1,3 +1,14 @@
+.staticFooterContainer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
 .footerText {
     margin-bottom: 30px;
     font-size: 15px;
@@ -12,3 +23,38 @@
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
 }
+
+.footerEmail {
+    font-size: 12px;
+    white-space: nowrap;
+    position: absolute;
+    bottom: 70px;
+    right: 20px;
+    color: rgba(255, 255, 255, 0.4);
+}
+.footerEmail span {
+    color: rgba(255, 255, 255, 0.8);
+    user-select: all;
+}
+
+
+@media only screen and (max-width: 800px) {
+    .staticFooterContainer {
+        transform-origin: right center;
+        right: 30px;
+        bottom: -40px;
+        transform: rotate(90deg);
+    }
+    .iconContainer svg {
+        transform: rotate(-90deg);
+    }
+    .footerEmail {
+        transform-origin: right bottom;
+        transform: rotate(-90deg);
+        margin-top: -30px;
+        margin-right: 0px;
+        position: relative;
+        bottom: unset;
+        right: unset;
+    }
+  }

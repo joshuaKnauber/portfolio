@@ -5,9 +5,8 @@
     z-index: 2;
     height: 94%;
     height: 100%;
-    background-color: rgba(36, 32, 44, 0.9);
+    background-color: rgba(36, 32, 44, 0.95);
     background: linear-gradient(148deg, rgba(47, 40, 63, 0.95) 0%, rgba(16, 15, 20, 0.95) 100%);
-    /* background: linear-gradient(148deg, rgba(47, 40, 63, 1) 0%, rgba(16, 15, 20, 1) 100%); */
     /* border-radius: 12px; */
     display: flex;
     flex-direction: column;
