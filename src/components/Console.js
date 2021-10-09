@@ -105,7 +105,8 @@ export default function Console() {
               <span>{'>>>'}&nbsp;&nbsp;</span>
               <Typist startDelay={0} avgTypingDelay={2} stdTypingDelay={2}
                 cursor={{show: false}}>
-                {<span className={"typed"}>Copied E-Mail (<span className="special">joshua.knauber@gmail.com</span>)</span>}
+                {<span className={"typed"}>Copied E-Mail (<span className="link"
+                  style={{userSelect: "all"}}>joshua.knauber@gmail.com</span>)</span>}
               </Typist>
             </div>}
 

@@ -78,6 +78,7 @@ export default function App() {
         {ORBIT_CONTROLS && <OrbitControls/>}
         <ResizeController />
 
+        {/* TODO: Loading is in front of console */}
         <Suspense fallback={<Loading/>}>
           <UnrealBloom>
             <Scene setShowHeader={setShowHeader} setShowFooter={setShowFooter} setScrollProgress={setScrollProgress} />
