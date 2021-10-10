@@ -3,7 +3,7 @@ import { useSpring, animated } from 'react-spring';
 
 import * as THREE from "three";
 import { Canvas, useFrame, useThree, extend, useLoader } from '@react-three/fiber';
-import { OrbitControls, CameraShake } from '@react-three/drei';
+import { OrbitControls, CameraShake, Html } from '@react-three/drei';
 import { EffectComposer, DepthOfField, Bloom, Noise, Vignette, SMAA, ChromaticAberration } from '@react-three/postprocessing'
 import { BlendFunction } from 'postprocessing'
 
@@ -30,18 +30,21 @@ const AnimatedStaticFooter = animated(StaticFooter);
 
 export default function App() {
 
+  const [loadingComplete, setLoadingComplete] = useState(false)
+
   const [showHeader, setShowHeader] = useState(true)
   const [showFooter, setShowFooter] = useState(false)
 
   const [scrollProgress, setScrollProgress] = useState(0)
 
-  const { headerOpacity, staticFooterOpacity, footerOpacity, footerTranslate, animatedScrollProgress, animatedIconsWidth } = useSpring({
+  const { headerOpacity, staticFooterOpacity, footerOpacity, footerTranslate, animatedScrollProgress, animatedIconsWidth, loadingCoverOpacity } = useSpring({
     headerOpacity: showHeader ? 1 : 0,
     staticFooterOpacity: showHeader ? 0 : 1,
     footerOpacity: showFooter ? 1 : 0,
     footerTranslate: showFooter ? 0 : -100,
     animatedScrollProgress: scrollProgress,
-    animatedIconsWidth: showFooter ? "150px" : "0px"
+    animatedIconsWidth: showFooter ? "150px" : "0px",
+    loadingCoverOpacity: loadingComplete ? 0 : 1,
   })
 
   useEffect(() => {
@@ -53,6 +56,13 @@ export default function App() {
       }
     }
   }, [showHeader])
+
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoadingComplete(true)
+    }, 1000);
+  }, [])
 
 
   const shakeConfig = {
@@ -76,7 +86,7 @@ export default function App() {
         <ResizeController />
 
         {/* TODO: Loading is in front of console */}
-        <Suspense fallback={<Loading/>}>
+        <Suspense fallback={null} >
           {/* <UnrealBloom> */}
             <Scene setShowHeader={setShowHeader} setShowFooter={setShowFooter} setScrollProgress={setScrollProgress} />
           {/* </UnrealBloom> */}
@@ -94,6 +104,8 @@ export default function App() {
         </EffectComposer>
 
       </Canvas>
+
+      <animated.div style={{position:"fixed", width:"100vw", height:"100vh", backgroundColor:"black", opacity:loadingCoverOpacity}}></animated.div>
 
       <animated.div className="progressContainer" style={{opacity:staticFooterOpacity}}>
         <AnimatedCircularProgress value={animatedScrollProgress} strokeWidth={10} styles={buildStyles({

@@ -18,7 +18,7 @@ const ORBIT_CONTROLS = false
 export default function Scene({ setShowHeader, setShowFooter, setScrollProgress }) {
 
   // const START_Y_ROCKET = -50 // amount the rocket is translated on y at the start
-  const START_Y_ROCKET = -16 // amount the rocket is translated on y at the start
+  const START_Y_ROCKET = -20 // amount the rocket is translated on y at the start
   const END_Y_ROCKET = -1 // final y position of the rocket
   const START_Y_PLANE = 0 // amount the planes are translated on y at the start
 

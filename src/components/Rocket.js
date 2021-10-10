@@ -5,13 +5,14 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import * as THREE from "three";
 
 import Cubes from '../assets/rocket/testMaps.gltf';
+import Mockup from '../assets/model/model.gltf';
 
 
 
 export default function Rocket() {
-  const { scene } = useLoader(GLTFLoader, Cubes)  
+  const { scene } = useLoader(GLTFLoader, Mockup)  
 
   return (
-    <primitive object={ scene } ma />
+    <primitive object={ scene } />
   );
 }
