@@ -105,7 +105,10 @@ export default function App() {
 
       </Canvas>
 
-      <animated.div style={{position:"fixed", width:"100vw", height:"100vh", backgroundColor:"black", opacity:loadingCoverOpacity}}></animated.div>
+      <animated.div
+        style={{position:"fixed", width:"100vw", height:"100vh",
+          backgroundColor:"black", opacity:loadingCoverOpacity,
+          pointerEvents: "none"}}></animated.div>
 
       <animated.div className="progressContainer" style={{opacity:staticFooterOpacity}}>
         <AnimatedCircularProgress value={animatedScrollProgress} strokeWidth={10} styles={buildStyles({
