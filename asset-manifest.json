@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.7cc2ce54.chunk.css",
-    "main.js": "/static/js/main.e6b6a27f.chunk.js",
-    "main.js.map": "/static/js/main.e6b6a27f.chunk.js.map",
+    "main.js": "/static/js/main.bdf2d1cc.chunk.js",
+    "main.js.map": "/static/js/main.bdf2d1cc.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.e655938b.js",
     "runtime-main.js.map": "/static/js/runtime-main.e655938b.js.map",
     "static/css/2.6c0f60ba.chunk.css": "/static/css/2.6c0f60ba.chunk.css",
@@ -15,7 +15,7 @@
     "static/css/main.7cc2ce54.chunk.css.map": "/static/css/main.7cc2ce54.chunk.css.map",
     "static/js/2.c40b3760.chunk.js.LICENSE.txt": "/static/js/2.c40b3760.chunk.js.LICENSE.txt",
     "static/media/App.css": "/static/media/ClarityCity-SemiBold.ee52c31a.woff",
-    "static/media/model.bed64045.gltf": "/static/media/model.bed64045.gltf",
+    "static/media/model.8123a3d5.gltf": "/static/media/model.8123a3d5.gltf",
     "static/media/testMaps.7d5677a9.gltf": "/static/media/testMaps.7d5677a9.gltf"
   },
   "entrypoints": [
@@ -23,6 +23,6 @@
     "static/css/2.6c0f60ba.chunk.css",
     "static/js/2.c40b3760.chunk.js",
     "static/css/main.7cc2ce54.chunk.css",
-    "static/js/main.e6b6a27f.chunk.js"
+    "static/js/main.bdf2d1cc.chunk.js"
   ]
 }
