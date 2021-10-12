@@ -1,1 +1,1 @@
-This page is live [here](https://www.joshuaknauber.com/)
+The deployed version of this repository can be found [here](https://www.joshuaknauber.com/).

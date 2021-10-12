@@ -1,10 +1,9 @@
 import React, { useRef, useState, useEffect, Suspense, useMemo } from 'react';
 import { useSpring, animated } from 'react-spring';
 
-import * as THREE from "three";
-import { Canvas, useFrame, useThree, extend, useLoader } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 import { OrbitControls, CameraShake, Html } from '@react-three/drei';
-import { EffectComposer, DepthOfField, Bloom, Noise, Vignette, SMAA, ChromaticAberration } from '@react-three/postprocessing'
+import { EffectComposer, Bloom, Vignette, ChromaticAberration } from '@react-three/postprocessing'
 import { BlendFunction } from 'postprocessing'
 
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
@@ -12,13 +11,11 @@ import 'react-circular-progressbar/dist/styles.css';
 
 import './App.css';
 
-import Loading from './components/LoadingScreen';
 import Scene from './components/Scene';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import StaticFooter from './components/StaticFooter';
 import ResizeController from './components/ResizeController';
-import UnrealBloom from './components/UnrealBloom';
 
 
 const ORBIT_CONTROLS = false
@@ -66,30 +63,27 @@ export default function App() {
 
 
   const shakeConfig = {
-    maxYaw: 0.008, // Max amount camera can yaw in either direction
-    maxPitch: 0.008, // Max amount camera can pitch in either direction
-    maxRoll: 0.008, // Max amount camera can roll in either direction
-    yawFrequency: 0.5, // Frequency of the the yaw rotation
-    pitchFrequency: 0.5, // Frequency of the pitch rotation
-    rollFrequency: 0.5, // Frequency of the roll rotation
-    intensity: 1, // initial intensity of the shake
-    decay: false, // should the intensity decay over time
+    maxYaw: 0.008,
+    maxPitch: 0.008,
+    maxRoll: 0.008,
+    yawFrequency: 0.5,
+    pitchFrequency: 0.5,
+    rollFrequency: 0.5,
+    intensity: 1,
+    decay: false,
   }
 
   const headerRef = useRef()
 
 
-  return ( // gl={{ antialias: true, alpha: false }}
+  return (
     <div className="App">
       <Canvas colorManagement camera={{position:[0, 0, 0]}}>
         {ORBIT_CONTROLS && <OrbitControls/>}
         <ResizeController />
 
-        {/* TODO: Loading is in front of console */}
         <Suspense fallback={null} >
-          {/* <UnrealBloom> */}
             <Scene setShowHeader={setShowHeader} setShowFooter={setShowFooter} setScrollProgress={setScrollProgress} />
-          {/* </UnrealBloom> */}
           <CameraShake {...shakeConfig} />
         </Suspense>
 

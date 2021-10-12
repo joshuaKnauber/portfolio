@@ -111,6 +111,7 @@ p {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  pointer-events: all;
   transition: transform 0.1s;
 }
 .iconContainer:hover {
