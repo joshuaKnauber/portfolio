@@ -15,10 +15,54 @@ import HeaderFont from '../fonts/ClarityCity-SemiBold.woff';
 const ORBIT_CONTROLS = false
 
 
+
+function KeyLight({ brightness, color }) {
+  return (
+    <rectAreaLight
+      width={3}
+      height={3}
+      color={color}
+      intensity={brightness}
+      position={[-2, 0, 5]}
+      lookAt={[0, 0, 0]}
+      penumbra={1}
+      castShadow
+    />
+  );
+}
+function FillLight({ brightness, color }) {
+  return (
+    <rectAreaLight
+      width={3}
+      height={3}
+      intensity={brightness}
+      color={color}
+      position={[2, 1, 4]}
+      lookAt={[0, 0, 0]}
+      penumbra={2}
+      castShadow
+    />
+  );
+}
+function RimLight({ brightness, color }) {
+  return (
+    <rectAreaLight
+      width={2}
+      height={2}
+      intensity={brightness}
+      color={color}
+      position={[1, 4, -2]}
+      rotation={[0, 180, 0]}
+      castShadow
+    />
+  );
+}
+
+
 export default function Scene({ setShowHeader, setShowFooter, setScrollProgress }) {
 
   // const START_Y_ROCKET = -50 // amount the rocket is translated on y at the start
-  const START_Y_ROCKET = -20 // amount the rocket is translated on y at the start
+  const START_Y_ROCKET = -11 // amount the rocket is translated on y at the start
   const END_Y_ROCKET = -1 // final y position of the rocket
   const START_Y_PLANE = 0 // amount the planes are translated on y at the start
 
@@ -173,13 +217,14 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
     }
   }, [])
 
-  const ref = useRef()
-  useHelper(ref, DirectionalLightHelper, 5)
   return (
     <>
-      <ambientLight intensity={0.7}/>
+      <ambientLight intensity={0.2}/>
       <pointLight position={[10, 10, 5]} color={0xffffff} intensity={1} />
       <pointLight position={[-10, -10, -5]} color={0xffffff} intensity={1} />
+      {/* <KeyLight brightness={8} color="#FFD2BD" />
+      <FillLight brightness={2} color="#DDBDFF" />
+      <RimLight brightness={100} color="#fff" /> */}
 
       <animated.group position={yPosRocketAnimated} rotation={rotRocketAnimated}>
         <Rocket />

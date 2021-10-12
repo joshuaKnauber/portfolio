@@ -78,7 +78,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <Canvas colorManagement camera={{position:[0, 0, 0]}}>
+      <Canvas colorManagement camera={{position:[0, 0, 0]}} gl={{antialias:true}}>
         {ORBIT_CONTROLS && <OrbitControls/>}
         <ResizeController />
 
