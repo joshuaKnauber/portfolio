@@ -5,8 +5,11 @@
     z-index: 2;
     height: 94%;
     height: 100%;
-    background-color: rgba(36, 32, 44, 0.95);
-    background: linear-gradient(148deg, rgba(47, 40, 63, 0.95) 0%, rgba(16, 15, 20, 0.95) 100%);
+    /* background-color: rgba(36, 32, 44, 0.95); */
+    /* background: linear-gradient(148deg, rgba(47, 40, 63, 0.95) 0%, rgba(16, 15, 20, 0.95) 100%); */
+    /* background: linear-gradient(148deg, rgba(31, 25, 41, 0.95) 0%, rgba(5, 5, 10, 0.95) 100%); */
+    /* background: linear-gradient(132deg, rgba(74,56,105,0.95) 0%, rgba(31,25,41,0.95) 100%); */
+    background-color: rgba(15, 12, 19, 0.949);
     /* border-radius: 12px; */
     display: flex;
     flex-direction: column;
@@ -28,6 +31,7 @@
     height: 15px;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 50%;
+    opacity: 0.7;
     margin-left: 10px;
 }
 
@@ -57,17 +61,17 @@
 }
 
 .highlighted {
-    color: rgb(241, 152, 50);
+    color: #ffa550;
     font-weight: 600;
 }
 
 .special {
-    color: rgb(71, 197, 128);
+    color: #3AA6EE;
     font-weight: 600;
 }
 
 .consoleLine a, .link {
-    color: rgb(125, 172, 235);
+    color: #ae8dfd;
     text-decoration: none;
     cursor: pointer;
     pointer-events: all !important;
