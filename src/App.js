@@ -78,7 +78,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <Canvas colorManagement camera={{position:[0, 0, 0]}} gl={{antialias:true}}>
+      <Canvas colorManagement camera={{position:[0, 0, 0]}} gl={{antialias:true, alpha:true}}>
         {ORBIT_CONTROLS && <OrbitControls/>}
         <ResizeController />
 
@@ -88,9 +88,9 @@ export default function App() {
         </Suspense>
 
         <EffectComposer>
-          <Bloom luminanceThreshold={0.1} luminanceSmoothing={0.6} height={40} intensity={0.09} />
-          <Bloom luminanceThreshold={0.4} luminanceSmoothing={0.8} height={500} intensity={0.25} />
-          <Vignette eskil={false} offset={0.1} darkness={0.7} />
+          {/* <Bloom luminanceThreshold={0.1} luminanceSmoothing={0.6} height={40} intensity={0.09} /> */}
+          {/* <Bloom luminanceThreshold={0.4} luminanceSmoothing={0.8} height={500} intensity={0.25} /> */}
+          {/* <Vignette eskil={false} offset={0.1} darkness={0.7} /> */}
           <ChromaticAberration
             blendFunction={BlendFunction.NORMAL}
             offset={[0.0006, 0.00006]}
