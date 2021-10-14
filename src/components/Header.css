@@ -1,5 +1,6 @@
 .headerContent {
     width: 100%;
+    margin: auto 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,18 +12,21 @@
     display: flex;
     flex-direction: column;
     text-align: center;
+    position: relative;
 }
 
 .titleBig {
     font-weight: 800;
-    margin-top: 30vh;
+    /* margin-top: 25vh; */
     margin-bottom: 40px;
+    white-space: nowrap;
 }
 
 .scrollIndicatorContainer {
     width: 20px;
     margin: 0 auto;
     margin-top: 60px;
+    pointer-events: all;
 }
 .scrollIndicatorContainer img {
     width: 100%;
@@ -30,7 +34,7 @@
 
 .headerBodyText {
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 400;
     margin-bottom: 12px;
 }
 
@@ -39,4 +43,14 @@
     cursor: pointer;
     font-style: italic;
     color: #A563FA;
+}
+
+.scrollWarning {
+    position: absolute;
+    bottom: -20px;
+    text-align: center;
+    width: calc(100% - 40px);
+    font-size: 13px;
+    font-weight: 600;
+    color: rgb(252, 144, 81);
 }

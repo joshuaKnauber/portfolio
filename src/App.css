@@ -8,15 +8,9 @@
 
 @font-face {
   font-family: 'ClarityCity';
-  font-weight: 500;
-  src: local('ClarityCity'), url(./fonts/ClarityCity-Medium.woff) format('woff');
-}
-
-@font-face {
-  font-family: 'ClarityCity';
-  font-weight: 500;
+  font-weight: 400;
   font-style: italic;
-  src: local('ClarityCity'), url(./fonts/ClarityCity-MediumItalic.woff) format('woff');
+  src: local('ClarityCity'), url(./fonts/ClarityCity-RegularItalic.woff) format('woff');
 }
 
 @font-face {
