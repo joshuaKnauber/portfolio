@@ -8,26 +8,59 @@ import { Line, Text, MeshWobbleMaterial, Html } from '@react-three/drei';
 import { useGLTF, useTexture } from '@react-three/drei'
 
 import Emit from '../assets/planes/emit.png';
+import TitleFont from '../fonts/ClarityCity-SemiBold.woff';
+
+
+const AnimatedText = animated(Text);
+const AnimatedWobbleMaterial = animated(MeshWobbleMaterial);
 
 
 export default function Plane({x=0, y=0, z=0, rot=0, opacity=1}) {
   const emit = useTexture(Emit)
 
+  const [showText, setShowText] = useState(false)
+
+  const [hoveringPlane, setHoveringPlane] = useState(false)
+
+  const { textPos, textOpac } = useSpring({
+    textPos: showText ? [0, 0, 0.3] : [1.5, 0, 0.3],
+    textOpac: showText ? 1 : 0,
+    delay: 300
+  })
+
+  const { planeColor } = useSpring({
+    planeColor: hoveringPlane ? "rgb(180, 180, 180)" : "white",
+  })
+
+  useEffect(() => {
+    if (opacity > 0.98) {
+      setShowText(true)
+    } else {
+      setShowText(false)
+    }
+  }, [opacity])
+  useEffect(() => {
+    if (hoveringPlane) {
+      document.body.classList.add("pointing")
+    } else {
+      document.body.classList.remove("pointing")
+    }
+  }, [hoveringPlane])
+
   return (
-    <group>
-      {/* <Html position={[x, y, z]} style={{opacity:opacity}}>
-        <p>test</p>
-      </Html> */}
-      <mesh position={[x, y, z]} rotation={[0, rot, 0]}>
-        <planeBufferGeometry args={[3.5, 2]} attach="geometry" />
-        <MeshWobbleMaterial attach="material"
+    <group position={[x, y, z]} rotation={[0, rot, 0]}>
+      <mesh onPointerOver={() => setHoveringPlane(true)} onPointerOut={() => setHoveringPlane(false)}>
+        <animated.planeBufferGeometry args={[3.5, 2]} attach="geometry" />
+        <AnimatedWobbleMaterial attach="material"
           factor={Math.min(0.2, 1.25-opacity)} speed={3}
           side={THREE.DoubleSide}
           transparent={true}
           opacity={opacity}
           map={emit}
+          color={planeColor}
         />
       </mesh>
+      <AnimatedText position={textPos} fillOpacity={textOpac} font={TitleFont}>test</AnimatedText>
     </group>
   )
 }

@@ -31,12 +31,11 @@ body {
 }
 
 canvas {
-  background: rgb(28,25,36);
-  background: radial-gradient(circle, rgb(13, 9, 17) 40%, rgb(5, 5, 5) 100%);
+  background: black;
+  /* background: radial-gradient(circle, rgb(13, 9, 17) 40%, rgb(5, 5, 5) 100%); */
 }
 
 .App {
-  background-color: black;
   width: 100vw;
   height: 100vh;
   position: fixed;

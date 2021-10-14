@@ -62,7 +62,7 @@ function RimLight({ brightness, color }) {
 export default function Scene({ setShowHeader, setShowFooter, setScrollProgress }) {
 
   // const START_Y_ROCKET = -50 // amount the rocket is translated on y at the start
-  const START_Y_ROCKET = -10 // amount the rocket is translated on y at the start
+  const START_Y_ROCKET = -11.5 // amount the rocket is translated on y at the start
   const END_Y_ROCKET = -1 // final y position of the rocket
   const START_Y_PLANE = 0 // amount the planes are translated on y at the start
 
@@ -219,12 +219,12 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
 
   return (
     <>
-      <ambientLight intensity={0.2}/>
+      <ambientLight intensity={1}/>
       {/* <pointLight position={[10, 10, 5]} color={0xffffff} intensity={1} /> */}
       {/* <pointLight position={[-10, -10, -5]} color={0xffffff} intensity={1} /> */}
-      <KeyLight brightness={8} color="#FFD2BD" />
+      {/* <KeyLight brightness={8} color="#FFD2BD" />
       <FillLight brightness={2} color="#DDBDFF" />
-      <RimLight brightness={100} color="#fff" />
+      <RimLight brightness={100} color="#fff" /> */}
 
       <animated.group position={yPosRocketAnimated} rotation={rotRocketAnimated}>
         <Rocket />
