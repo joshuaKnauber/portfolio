@@ -9,7 +9,26 @@
 @font-face {
   font-family: 'ClarityCity';
   font-weight: 500;
+  src: local('ClarityCity'), url(./fonts/ClarityCity-Medium.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'ClarityCity';
+  font-weight: 500;
+  font-style: italic;
+  src: local('ClarityCity'), url(./fonts/ClarityCity-MediumItalic.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'ClarityCity';
+  font-weight: 600;
   src: local('ClarityCity'), url(./fonts/ClarityCity-SemiBold.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'ClarityCity';
+  font-weight: 800;
+  src: local('ClarityCity'), url(./fonts/ClarityCity-Bold.woff) format('woff');
 }
 
 

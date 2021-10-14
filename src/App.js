@@ -36,11 +36,11 @@ export default function App() {
 
   const { headerOpacity, staticFooterOpacity, footerOpacity, footerTranslate, animatedScrollProgress, animatedIconsWidth, loadingCoverOpacity } = useSpring({
     headerOpacity: showHeader ? 1 : 0,
-    staticFooterOpacity: showHeader ? 0 : 1,
+    staticFooterOpacity: 1,
     footerOpacity: showFooter ? 1 : 0,
     footerTranslate: showFooter ? 0 : -100,
     animatedScrollProgress: scrollProgress,
-    animatedIconsWidth: showFooter ? "150px" : "0px",
+    animatedIconsWidth: showFooter || showHeader ? "150px" : "0px",
     loadingCoverOpacity: loadingComplete ? 0 : 1,
   })
 

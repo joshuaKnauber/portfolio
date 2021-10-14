@@ -7,18 +7,36 @@
 
 .textHeader {
     padding: 20px;
+    max-width: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 
 .titleBig {
-    font-size: 50px;
-    font-weight: 600;
+    font-weight: 800;
+    margin-top: 30vh;
+    margin-bottom: 40px;
 }
 
 .scrollIndicatorContainer {
-    width: 30px;
-    height: 40px;
-    background-color: white;
+    width: 20px;
     margin: 0 auto;
-    margin-top: 100px;
-    border-radius: 20%;
+    margin-top: 60px;
+}
+.scrollIndicatorContainer img {
+    width: 100%;
+}
+
+.headerBodyText {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.textHeader a {
+    pointer-events: all;
+    cursor: pointer;
+    font-style: italic;
+    color: #A563FA;
 }

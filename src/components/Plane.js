@@ -33,7 +33,7 @@ export default function Plane({x=0, y=0, z=0, rot=0, opacity=1}) {
   })
 
   useEffect(() => {
-    if (opacity > 0.98) {
+    if (opacity > 0.7) {
       setShowText(true)
     } else {
       setShowText(false)
@@ -52,15 +52,19 @@ export default function Plane({x=0, y=0, z=0, rot=0, opacity=1}) {
       <mesh onPointerOver={() => setHoveringPlane(true)} onPointerOut={() => setHoveringPlane(false)}>
         <animated.planeBufferGeometry args={[3.5, 2]} attach="geometry" />
         <AnimatedWobbleMaterial attach="material"
-          factor={Math.min(0.2, 1.25-opacity)} speed={3}
-          side={THREE.DoubleSide}
+          factor={Math.min(1-opacity, 0.2)} speed={3}
+          // side={THREE.DoubleSide}
           transparent={true}
-          opacity={opacity}
           map={emit}
           color={planeColor}
         />
       </mesh>
-      <AnimatedText position={textPos} fillOpacity={textOpac} font={TitleFont}>test</AnimatedText>
+      <AnimatedText
+        position={textPos}
+        fillOpacity={textOpac}
+        strokeOpacity={0}
+        font={TitleFont}
+        fontSize={0.8} >test</AnimatedText>
     </group>
   )
 }

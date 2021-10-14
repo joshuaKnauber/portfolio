@@ -62,12 +62,14 @@ function RimLight({ brightness, color }) {
 export default function Scene({ setShowHeader, setShowFooter, setScrollProgress }) {
 
   // const START_Y_ROCKET = -50 // amount the rocket is translated on y at the start
-  const START_Y_ROCKET = -11.5 // amount the rocket is translated on y at the start
+  const START_Y_ROCKET = -14 // amount the rocket is translated on y at the start
   const END_Y_ROCKET = -1 // final y position of the rocket
   const START_Y_PLANE = 0 // amount the planes are translated on y at the start
 
   const PLANE_VERT_DIST = -4 // vertical distance between the planes
   const PLANE_HORIZ_DIST = 3.5 // horizontal distance between the planes and the center
+
+  const PLANE_SCROLL_DEGREES = 9 // should add up to 90. the lower the more scrolls are needed to get to the next plane
 
   const planes = [
     null,
@@ -109,7 +111,7 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
     setScrollProgress(percentageComplete*-1*100)
 
     // show or hide header
-    if (percentageComplete < -0.10) {
+    if (percentageComplete < -0.05) {
       setShowHeader(false)
     } else {
       setShowHeader(true)
@@ -131,7 +133,7 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
     setYPosRocket(newRocketPos)
 
     // rotate rocket
-    const ROCKET_ROTATIONS = 6
+    const ROCKET_ROTATIONS = 5
     setRotRocket(rot => {
       const newRocketRot = ROCKET_ROTATIONS*90 * percentageComplete
       return newRocketRot
@@ -153,7 +155,7 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
         const snapDistance = Math.abs(Math.abs(nextMultiple) - Math.abs(rot))
 
         // if scrolled far enough
-        if (Math.abs(scrollAmount) > 9 && toScrollDirection === scrollDirection && snapDistance <= 18) {
+        if (Math.abs(scrollAmount) > PLANE_SCROLL_DEGREES/2 && toScrollDirection === scrollDirection && snapDistance <= PLANE_SCROLL_DEGREES) {
           newRot = nextMultiple
         }
       }
@@ -177,9 +179,9 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
 
   // SCROLL ON DESKTOP
   const onScroll = (evt) => {
-    // limit scroll amount to 18 to add up to 90°
+    // limit scroll amount to e.g. 18 to add up to 90°
     if (evt.deltaY) {
-      const scrollAmount = Math.min(18, Math.abs(evt.deltaY)) * evt.deltaY/Math.abs(evt.deltaY)
+      const scrollAmount = Math.min(PLANE_SCROLL_DEGREES, Math.abs(evt.deltaY)) * evt.deltaY/Math.abs(evt.deltaY)
   
       const moveAmount = 0
   
@@ -240,8 +242,8 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
             const factorZ = (Number(index % 4 === 0) * 2 - 1) * (1-isX)
 
             const rotations = rotPlane*-1 / 90
-            const distance = Math.min(1.1, Math.abs(rotations - index))
-            const opacity = mapRange(1.1 - distance, 0, 1.1, 0, 1.25)
+            const distance = Math.min(1, Math.abs(rotations - index))
+            const opacity = mapRange(1 - distance, 0, 1, 0, 1)
 
             return <Plane key={JSON.stringify(data)}
               x={PLANE_HORIZ_DIST * factorX}
