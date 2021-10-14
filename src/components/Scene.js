@@ -109,14 +109,14 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
     setScrollProgress(percentageComplete*-1*100)
 
     // show or hide header
-    if (percentageComplete < -0.01) {
+    if (percentageComplete < -0.10) {
       setShowHeader(false)
     } else {
       setShowHeader(true)
     }
 
     // show or hide footer
-    if (percentageComplete < -0.96) {
+    if (percentageComplete < -0.90) {
       setShowFooter(true)
     } else {
       setShowFooter(false)

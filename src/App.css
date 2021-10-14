@@ -69,6 +69,7 @@ canvas {
 .scaledDown {
   transform-origin: bottom center;
   transform: scale(0);
+  transition: transform 1s;
 }
 
 .footerContainer {

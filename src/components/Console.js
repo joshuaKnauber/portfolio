@@ -11,7 +11,7 @@ export default function Console() {
 
   const messages = [
     [["Hi! I'm Joshua", "typed"]],
-    [["I love", "typed"], ["solving hard problems", "highlighted"], ["with", "typed"], ["unique & usable solutions", "highlighted"]],
+    [["I", "typed"], ["solve hard problems", "highlighted"], ["with", "typed"], ["unique & usable solutions", "highlighted"]],
     [[" ", "typed"]],
     [["-> I'm currently studying", "typed"], ["Interaction Design at CODE University", "https://www.code.berlin/en/study/interaction-design/"], ["in Berlin", "typed"]],
     [["-> I work on", "typed"], ["UI, UX, frontend programming","special"], ["and some", "typed"], ["3D art","special"]],

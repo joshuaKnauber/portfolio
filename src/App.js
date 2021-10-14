@@ -83,13 +83,15 @@ export default function App() {
         <ResizeController />
 
         <Suspense fallback={null} >
-            <Scene setShowHeader={setShowHeader} setShowFooter={setShowFooter} setScrollProgress={setScrollProgress} />
+          <Scene setShowHeader={setShowHeader} setShowFooter={setShowFooter} setScrollProgress={setScrollProgress} />
           <CameraShake {...shakeConfig} />
         </Suspense>
 
         <EffectComposer>
-          {/* <Bloom luminanceThreshold={0.1} luminanceSmoothing={0.6} height={40} intensity={0.09} /> */}
-          <Bloom luminanceThreshold={0.4} luminanceSmoothing={0.8} height={500} intensity={0.25} />
+          <Bloom luminanceThreshold={0.1} luminanceSmoothing={0.8} height={300} intensity={0.3} />
+          {/* <Bloom luminanceThreshold={0.1} luminanceSmoothing={0.2} height={800} intensity={0.1} /> */}
+          {/* <Bloom luminanceThreshold={0.1} luminanceSmoothing={0.6} height={80} intensity={0.05} /> */}
+          {/* <Bloom luminanceThreshold={0.4} luminanceSmoothing={0.8} height={500} intensity={0.25} /> */}
           <Vignette eskil={false} offset={0.1} darkness={0.7} />
           <ChromaticAberration
             blendFunction={BlendFunction.NORMAL}

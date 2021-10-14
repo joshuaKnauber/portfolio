@@ -9,7 +9,12 @@ export default function Header() {
 
   return (
     <div className="headerContent">
-      <Console/>
+      {/* <Console/> */}
+      <div className="textHeader">
+        <p className="titleBig">placeholder text</p>
+        <p>placeholder text</p>
+        <div className="scrollIndicatorContainer"></div>
+      </div>
     </div>
   );
 }
