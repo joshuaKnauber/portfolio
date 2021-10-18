@@ -9,7 +9,7 @@ import * as THREE from "three";
 import Rocket from './Rocket';
 import Plane from './Plane';
 
-import HeaderFont from '../fonts/ClarityCity-SemiBold.woff';
+import Emit from '../assets/planes/emit.png';
 
 
 const ORBIT_CONTROLS = false
@@ -62,7 +62,7 @@ function RimLight({ brightness, color }) {
 export default function Scene({ setShowHeader, setShowFooter, setScrollProgress }) {
 
   // const START_Y_ROCKET = -50 // amount the rocket is translated on y at the start
-  const START_Y_ROCKET = -18 // amount the rocket is translated on y at the start
+  const START_Y_ROCKET = -15 // amount the rocket is translated on y at the start
   const END_Y_ROCKET = -1 // final y position of the rocket
   const START_Y_PLANE = 0 // amount the planes are translated on y at the start
 
@@ -74,13 +74,36 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
   const planes = [
     null,
     null,
-    0,
-    1,
-    2,
-    3,
-    4,
-    5,
-    6
+    {
+      title: "Streaming App",
+      tags: ["UI/UX", "React Native", "University Project", "WIP"],
+      link: "https://beryl-chemistry-021.notion.site/Music-App-de41e45b6f294dbdbba316c098dc29cf",
+      image: Emit,
+    },
+    {
+      title: "Interactive Recommendations",
+      tags: ["React", "University Project", "Interactive Prototype"],
+      link: "https://beryl-chemistry-021.notion.site/Interactive-Recommendations-15af3dbdef224d978478d042c68ba5a4",
+      image: Emit,
+    },
+    {
+      title: "Pharmacy Time Tracker",
+      tags: ["UI/UX", "Flutter", "Freelance Project"],
+      link: "https://beryl-chemistry-021.notion.site/Doctor-Time-Tracker-f0ea1ccd06654429a5435408400ad857",
+      image: Emit,
+    },
+    {
+      title: "Animal Shelter Sitemap",
+      tags: ["UX Research", "User Testing", "University Project"],
+      link: "https://beryl-chemistry-021.notion.site/Animal-Shelter-Sitemap-29627b241e4d41a5b3823cd8755a1b78",
+      image: Emit,
+    },
+    {
+      title: "Other Projects",
+      tags: ["UI/UX", "Blender", "Python", "..."],
+      link: "https://beryl-chemistry-021.notion.site/Other-Projects-e85abdbaacd64db88f4fe19ded20eb5b",
+      image: Emit,
+    },
   ]
 
 
@@ -222,9 +245,9 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
   return (
     <>
       <ambientLight intensity={1}/>
-      <rectAreaLight position={[10, 10, 5]} color={0xffffff} intensity={15} />
+      {/* <rectAreaLight position={[10, 10, 5]} color={0xffffff} intensity={15} />
       <pointLight position={[10, 10, 5]} color={0xffffff} intensity={0.1} />
-      <pointLight position={[-10, -10, -5]} color={0xffffff} intensity={0.1} />
+      <pointLight position={[-10, -10, -5]} color={0xffffff} intensity={0.1} /> */}
       {/* <KeyLight brightness={8} color="#FFD2BD" />
       <FillLight brightness={2} color="#DDBDFF" />
       <RimLight brightness={100} color="#fff" /> */}
@@ -252,6 +275,7 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
               z={PLANE_HORIZ_DIST * factorZ}
               rot={Math.PI/2 * index}
               opacity={opacity}
+              data={data}
             />
           })}
         </animated.group>

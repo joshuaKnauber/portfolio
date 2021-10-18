@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect, Suspense, useMemo } from 'react';
 import { useSpring, animated } from 'react-spring';
 
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, CameraShake, Html } from '@react-three/drei';
+import { OrbitControls, CameraShake, Stars, ContactShadows } from '@react-three/drei';
 import { EffectComposer, Bloom, Vignette, ChromaticAberration } from '@react-three/postprocessing'
 import { BlendFunction } from 'postprocessing'
 
@@ -81,6 +81,8 @@ export default function App() {
       <Canvas colorManagement camera={{position:[0, 0, 0]}} gl={{antialias:true, alpha:true}}>
         {ORBIT_CONTROLS && <OrbitControls/>}
         <ResizeController />
+        {/* <Stars radius={100} depth={40} count={5000} factor={4} saturation={0} fade /> */}
+        {/* <ContactShadows opacity={1} width={1} height={1} blur={1} far={10} resolution={256} frames={1} /> */}
 
         <Suspense fallback={null} >
           <Scene setShowHeader={setShowHeader} setShowFooter={setShowFooter} setScrollProgress={setScrollProgress} />
