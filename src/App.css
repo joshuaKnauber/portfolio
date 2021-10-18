@@ -168,7 +168,6 @@ body {
 .wipWarning {
   position: fixed;
   top: 20px;
-  left: 20px;
   font-size: 13px;
   font-weight: 500;
   opacity: 0.5;
