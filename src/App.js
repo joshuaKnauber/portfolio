@@ -126,6 +126,10 @@ export default function App() {
       <animated.div style={{opacity:staticFooterOpacity}}>
         <AnimatedStaticFooter width={animatedIconsWidth}/>
       </animated.div>
+
+      <animated.div className="loadingCover" style={{opacity:loadingCoverOpacity}}>
+
+      </animated.div>
     </div>
   );
 }
