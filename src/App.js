@@ -114,6 +114,8 @@ export default function App() {
           strokeLinecap: 'butt',
         })} />
       </animated.div>
+
+      <p className="wipWarning">👷This site is still WIP!</p>
       
       <animated.div style={{opacity:headerOpacity}} className={"headerContainer"} ref={headerRef}>
         <Header/>
