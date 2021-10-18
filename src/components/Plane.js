@@ -13,7 +13,6 @@ import SubTitleFont from '../fonts/ClarityCity-RegularItalic.woff';
 
 
 const AnimatedText = animated(Text);
-const AnimatedWobbleMaterial = animated(MeshWobbleMaterial);
 
 
 export default function Plane({x=0, y=0, z=0, rot=0, opacity=1, data=null}) {
@@ -27,12 +26,12 @@ export default function Plane({x=0, y=0, z=0, rot=0, opacity=1, data=null}) {
     textPos: showText ? [-1.7, -0.4, 0.3] : [1.5, -0.4, 0.3],
     tagPos: showText ? [-1.7, -0.65, 0.3] : [2.5, -0.65, 0.3],
     textOpac: showText ? 1 : 0,
-    tagOpac: showText ? 0.5 : 0,
+    tagOpac: showText ? 1 : 0,
     delay: 300
   })
 
-  const { planeColor } = useSpring({
-    planeColor: hoveringPlane ? "rgb(180, 180, 180)" : "white",
+  const { planeScale } = useSpring({
+    planeScale: hoveringPlane ? [1.1, 1.1, 1.1] : [1, 1, 1],
   })
 
   useEffect(() => {
@@ -52,18 +51,17 @@ export default function Plane({x=0, y=0, z=0, rot=0, opacity=1, data=null}) {
 
   return (
     <group position={[x, y, z]} rotation={[0, rot, 0]}>
-      <mesh
+      <animated.mesh scale={planeScale}
         onPointerOver={() => setHoveringPlane(true)} onPointerOut={() => setHoveringPlane(false)}
         onClick={() => window.open(data.link, "_blank")}>
         <animated.planeBufferGeometry args={[3.5, 2]} attach="geometry" />
-        <AnimatedWobbleMaterial attach="material"
+        <MeshWobbleMaterial attach="material"
           factor={Math.min(1-opacity, 0.2)} speed={3}
           // side={THREE.DoubleSide}
           transparent={true}
           map={img}
-          color={planeColor}
         />
-      </mesh>
+      </animated.mesh>
       <AnimatedText
         position={textPos}
         fillOpacity={textOpac}
@@ -78,6 +76,7 @@ export default function Plane({x=0, y=0, z=0, rot=0, opacity=1, data=null}) {
         strokeColor="white"
         font={SubTitleFont}
         anchorX="left"
+        color="#FF630B"
         fontSize={0.11} >{data.tags.map(tag => `[${tag}] `)}</AnimatedText>
     </group>
   )

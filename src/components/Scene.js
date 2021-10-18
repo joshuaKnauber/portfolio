@@ -10,6 +10,8 @@ import Rocket from './Rocket';
 import Plane from './Plane';
 
 import Emit from '../assets/planes/emit.png';
+import ShelterSitemap from '../assets/planes/shelterSitemap.png';
+import InteractiveRecommendations from '../assets/planes/interactiveRecommendations.png';
 
 
 const ORBIT_CONTROLS = false
@@ -75,28 +77,28 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
     null,
     null,
     {
+      title: "Interactive Recommendations",
+      tags: ["React", "University Project", "Interactive Prototype"],
+      link: "https://beryl-chemistry-021.notion.site/Interactive-Recommendations-15af3dbdef224d978478d042c68ba5a4",
+      image: InteractiveRecommendations,
+    },
+    {
       title: "Streaming App",
       tags: ["UI/UX", "React Native", "University Project", "WIP"],
       link: "https://beryl-chemistry-021.notion.site/Music-App-de41e45b6f294dbdbba316c098dc29cf",
       image: Emit,
     },
     {
-      title: "Interactive Recommendations",
-      tags: ["React", "University Project", "Interactive Prototype"],
-      link: "https://beryl-chemistry-021.notion.site/Interactive-Recommendations-15af3dbdef224d978478d042c68ba5a4",
-      image: Emit,
-    },
-    {
-      title: "Pharmacy Time Tracker",
-      tags: ["UI/UX", "Flutter", "Freelance Project"],
-      link: "https://beryl-chemistry-021.notion.site/Doctor-Time-Tracker-f0ea1ccd06654429a5435408400ad857",
+      title: "Portfolio Website",
+      tags: ["UI/UX", "React", "Three.js"],
+      link: "https://beryl-chemistry-021.notion.site/Portfolio-Website-f0ea1ccd06654429a5435408400ad857",
       image: Emit,
     },
     {
       title: "Animal Shelter Sitemap",
       tags: ["UX Research", "User Testing", "University Project"],
       link: "https://beryl-chemistry-021.notion.site/Animal-Shelter-Sitemap-29627b241e4d41a5b3823cd8755a1b78",
-      image: Emit,
+      image: ShelterSitemap,
     },
     {
       title: "Other Projects",
