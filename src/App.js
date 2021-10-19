@@ -117,7 +117,7 @@ export default function App() {
         })} />
       </animated.div>
 
-      <p className="wipWarning">👷This site is still WIP!</p>
+      <p className="wipWarning">👷Site under construction!</p>
       
       <animated.div style={{opacity:headerOpacity}} className={"headerContainer"} ref={headerRef}>
         <Header/>

@@ -22,11 +22,12 @@ export default function Plane({x=0, y=0, z=0, rot=0, opacity=1, data=null}) {
 
   const [hoveringPlane, setHoveringPlane] = useState(false)
 
-  const { textPos, tagPos, textOpac, tagOpac } = useSpring({
+  const { textPos, tagPos, clickPos, textOpac, tagOpac } = useSpring({
     textPos: showText ? [-1.7, -0.4, 0.3] : [1.5, -0.4, 0.3],
-    tagPos: showText ? [-1.7, -0.65, 0.3] : [2.5, -0.65, 0.3],
+    tagPos: showText ? [-1.7, -0.6, 0.3] : [2.5, -0.6, 0.3],
+    clickPos: showText ? [-1.7, -0.8, 0.3] : [3, -0.8, 0.3],
     textOpac: showText ? 1 : 0,
-    tagOpac: showText ? 1 : 0,
+    tagOpac: showText ? 0.5 : 0,
     delay: 300
   })
 
@@ -60,6 +61,8 @@ export default function Plane({x=0, y=0, z=0, rot=0, opacity=1, data=null}) {
           // side={THREE.DoubleSide}
           transparent={true}
           map={img}
+          emissiveMap={img}
+          emissiveIntensity={1}
         />
       </animated.mesh>
       <AnimatedText
@@ -76,8 +79,17 @@ export default function Plane({x=0, y=0, z=0, rot=0, opacity=1, data=null}) {
         strokeColor="white"
         font={SubTitleFont}
         anchorX="left"
-        color="#FF630B"
+        // color="#FF630B"
         fontSize={0.11} >{data.tags.map(tag => `[${tag}] `)}</AnimatedText>
+      <AnimatedText
+        position={clickPos}
+        fillOpacity={textOpac}
+        strokeOpacity={0}
+        strokeColor="white"
+        font={SubTitleFont}
+        anchorX="left"
+        color="#4719FC"
+        fontSize={0.08} >Click for details</AnimatedText>
     </group>
   )
 }

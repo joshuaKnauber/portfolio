@@ -12,6 +12,9 @@ import Plane from './Plane';
 import Emit from '../assets/planes/emit.png';
 import ShelterSitemap from '../assets/planes/shelterSitemap.png';
 import InteractiveRecommendations from '../assets/planes/interactiveRecommendations.png';
+import StreamingApp from '../assets/planes/streamingApp.png';
+import Portfolio from '../assets/planes/portfolio.png';
+import Other from '../assets/planes/other.png';
 
 
 const ORBIT_CONTROLS = false
@@ -64,7 +67,7 @@ function RimLight({ brightness, color }) {
 export default function Scene({ setShowHeader, setShowFooter, setScrollProgress }) {
 
   // const START_Y_ROCKET = -50 // amount the rocket is translated on y at the start
-  const START_Y_ROCKET = -15 // amount the rocket is translated on y at the start
+  const START_Y_ROCKET = -20 // amount the rocket is translated on y at the start
   const END_Y_ROCKET = -1 // final y position of the rocket
   const START_Y_PLANE = 0 // amount the planes are translated on y at the start
 
@@ -78,21 +81,21 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
     null,
     {
       title: "Interactive Recommendations",
-      tags: ["React", "University Project", "Interactive Prototype"],
+      tags: ["React", "University Project", "Interactive Data Viz"],
       link: "https://beryl-chemistry-021.notion.site/Interactive-Recommendations-15af3dbdef224d978478d042c68ba5a4",
       image: InteractiveRecommendations,
     },
     {
       title: "Streaming App",
-      tags: ["UI/UX", "React Native", "University Project", "WIP"],
+      tags: ["UI/UX", "React Native", "University Project"],
       link: "https://beryl-chemistry-021.notion.site/Music-App-de41e45b6f294dbdbba316c098dc29cf",
-      image: Emit,
+      image: StreamingApp,
     },
     {
       title: "Portfolio Website",
       tags: ["UI/UX", "React", "Three.js"],
       link: "https://beryl-chemistry-021.notion.site/Portfolio-Website-f0ea1ccd06654429a5435408400ad857",
-      image: Emit,
+      image: Portfolio,
     },
     {
       title: "Animal Shelter Sitemap",
@@ -102,9 +105,9 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
     },
     {
       title: "Other Projects",
-      tags: ["UI/UX", "Blender", "Python", "..."],
+      tags: ["UI/UX", "Freelancing", "Open Source", "..."],
       link: "https://beryl-chemistry-021.notion.site/Other-Projects-e85abdbaacd64db88f4fe19ded20eb5b",
-      image: Emit,
+      image: Other,
     },
   ]
 
