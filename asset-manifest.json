@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.27b18cd4.chunk.css",
+    "main.css": "/static/css/main.b0f589e7.chunk.css",
     "main.js": "/static/js/main.d6376c90.chunk.js",
     "main.js.map": "/static/js/main.d6376c90.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.749f8b94.js",
@@ -12,7 +12,7 @@
     "static/js/3.4197ecfe.chunk.js.map": "/static/js/3.4197ecfe.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.6c0f60ba.chunk.css.map": "/static/css/2.6c0f60ba.chunk.css.map",
-    "static/css/main.27b18cd4.chunk.css.map": "/static/css/main.27b18cd4.chunk.css.map",
+    "static/css/main.b0f589e7.chunk.css.map": "/static/css/main.b0f589e7.chunk.css.map",
     "static/js/2.62345cea.chunk.js.LICENSE.txt": "/static/js/2.62345cea.chunk.js.LICENSE.txt",
     "static/media/App.css": "/static/media/ClarityCity-SemiBold.ee52c31a.woff",
     "static/media/arrow.9ff3c5bc.svg": "/static/media/arrow.9ff3c5bc.svg",
@@ -30,7 +30,7 @@
     "static/js/runtime-main.749f8b94.js",
     "static/css/2.6c0f60ba.chunk.css",
     "static/js/2.62345cea.chunk.js",
-    "static/css/main.27b18cd4.chunk.css",
+    "static/css/main.b0f589e7.chunk.css",
     "static/js/main.d6376c90.chunk.js"
   ]
 }
