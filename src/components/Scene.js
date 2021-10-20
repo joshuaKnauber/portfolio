@@ -148,18 +148,6 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
   }
 
 
-  // SCROLL BAR
-  const onBodyScroll = (evt) => {
-    let newRot = -planes.length*90 * window.scrollY/(document.body.scrollHeight-window.innerHeight)
-
-    // if close to multiple of 90 and scrolling in right direction
-    const nextMultiple = 90*Math.round(newRot/90)
-    console.log(nextMultiple)
-
-    setRotPlane(nextMultiple)
-  }
-
-
   // SCROLL ON DESKTOP
   const onScroll = (evt) => {
     // limit scroll amount to e.g. 18 to add up to 90°
@@ -180,7 +168,7 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
 
   const onPointerMove = (evt) => {
     if (!isNaN(pointerStartY) && (pointerStartY - evt.pageY !== 0)) {
-      const MOBILE_SCROLL_SPEED = 0.5
+      const MOBILE_SCROLL_SPEED = 0.25
       rotateElements((pointerStartY - evt.pageY) * MOBILE_SCROLL_SPEED)
       pointerStartY = evt.pageY
     }
