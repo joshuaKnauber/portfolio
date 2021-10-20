@@ -23,7 +23,7 @@ const ORBIT_CONTROLS = false
 export default function Scene({ setShowHeader, setShowFooter, setScrollProgress }) {
 
   const START_Y_ROCKET = -15 // amount the rocket is translated on y at the start
-  const END_Y_ROCKET = -2.3 // final y position of the rocket
+  const END_Y_ROCKET = -1.5 // final y position of the rocket
   const START_Y_PLANE = 0 // amount the planes are translated on y at the start
   const ROCKET_ROTATIONS = 180 // amount of degrees the object should rotate
 
