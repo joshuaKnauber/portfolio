@@ -20,56 +20,12 @@ import Other from '../assets/planes/other.png';
 const ORBIT_CONTROLS = false
 
 
-
-function KeyLight({ brightness, color }) {
-  return (
-    <rectAreaLight
-      width={3}
-      height={3}
-      color={color}
-      intensity={brightness}
-      position={[-2, 0, 5]}
-      lookAt={[0, 0, 0]}
-      penumbra={1}
-      castShadow
-    />
-  );
-}
-function FillLight({ brightness, color }) {
-  return (
-    <rectAreaLight
-      width={3}
-      height={3}
-      intensity={brightness}
-      color={color}
-      position={[2, 1, 4]}
-      lookAt={[0, 0, 0]}
-      penumbra={2}
-      castShadow
-    />
-  );
-}
-function RimLight({ brightness, color }) {
-  return (
-    <rectAreaLight
-      width={2}
-      height={2}
-      intensity={brightness}
-      color={color}
-      position={[1, 4, -2]}
-      rotation={[0, 180, 0]}
-      castShadow
-    />
-  );
-}
-
-
 export default function Scene({ setShowHeader, setShowFooter, setScrollProgress }) {
 
-  // const START_Y_ROCKET = -50 // amount the rocket is translated on y at the start
-  const START_Y_ROCKET = -20 // amount the rocket is translated on y at the start
-  const END_Y_ROCKET = -1 // final y position of the rocket
+  const START_Y_ROCKET = -15 // amount the rocket is translated on y at the start
+  const END_Y_ROCKET = -2.3 // final y position of the rocket
   const START_Y_PLANE = 0 // amount the planes are translated on y at the start
+  const ROCKET_ROTATIONS = 180 // amount of degrees the object should rotate
 
   const PLANE_VERT_DIST = -4 // vertical distance between the planes
   const PLANE_HORIZ_DIST = 3.5 // horizontal distance between the planes and the center
@@ -78,7 +34,7 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
 
   const planes = [
     null,
-    null,
+    // null,
     {
       title: "Interactive Recommendations",
       tags: ["React", "University Project", "Interactive Data Viz"],
@@ -161,9 +117,8 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
     setYPosRocket(newRocketPos)
 
     // rotate rocket
-    const ROCKET_ROTATIONS = 5
     setRotRocket(rot => {
-      const newRocketRot = ROCKET_ROTATIONS*90 * percentageComplete
+      const newRocketRot = ROCKET_ROTATIONS + ROCKET_ROTATIONS * percentageComplete
       return newRocketRot
     })
   }, [rotPlane])
@@ -250,6 +205,7 @@ export default function Scene({ setShowHeader, setShowFooter, setScrollProgress 
   return (
     <>
       <ambientLight intensity={1}/>
+      {/* <pointLight position={[0, 1, 0]} color={0xffffff} intensity={1} /> */}
       {/* <rectAreaLight position={[10, 10, 5]} color={0xffffff} intensity={15} />
       <pointLight position={[10, 10, 5]} color={0xffffff} intensity={0.1} />
       <pointLight position={[-10, -10, -5]} color={0xffffff} intensity={0.1} /> */}

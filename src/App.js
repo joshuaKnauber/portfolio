@@ -92,12 +92,12 @@ export default function App() {
         <EffectComposer>
           {/* <Bloom luminanceThreshold={0.1} luminanceSmoothing={0.8} height={300} intensity={0.3} /> */}
           {/* <Bloom luminanceThreshold={0.1} luminanceSmoothing={0.2} height={800} intensity={0.1} /> */}
-          {/* <Bloom luminanceThreshold={0.1} luminanceSmoothing={0.6} height={80} intensity={0.05} /> */}
+          {/* <Bloom luminanceThreshold={0.2} luminanceSmoothing={0.6} height={60} intensity={0.06} /> */}
           {/* <Bloom luminanceThreshold={0.4} luminanceSmoothing={0.8} height={500} intensity={0.25} /> */}
           <Vignette eskil={false} offset={0.1} darkness={0.7} />
           <ChromaticAberration
             blendFunction={BlendFunction.NORMAL}
-            offset={[0.0006, 0.00006]}
+            offset={[0.001, 0.0001]}
           />
         </EffectComposer>
 
