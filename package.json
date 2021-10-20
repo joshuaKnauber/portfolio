@@ -21,8 +21,6 @@
     "react-scale-text": "^1.2.2",
     "react-scripts": "4.0.3",
     "react-spring": "^9.2.4",
-    "react-textfit": "^1.1.1",
-    "react-typist": "^2.0.5",
     "three": "^0.132.2",
     "web-vitals": "^1.0.1"
   },

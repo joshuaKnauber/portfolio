@@ -1,24 +1,21 @@
-import React, { useRef, useState, useEffect, Suspense, useMemo } from 'react';
+import React, { useRef, useState, useEffect, Suspense } from 'react';
 import { useSpring, animated } from 'react-spring';
 
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, CameraShake, Stars, ContactShadows } from '@react-three/drei';
-import { EffectComposer, Bloom, Vignette, ChromaticAberration } from '@react-three/postprocessing'
-import { BlendFunction } from 'postprocessing'
+import { CameraShake } from '@react-three/drei';
+import { EffectComposer, Bloom, Vignette } from '@react-three/postprocessing'
 
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 import './App.css';
 
+import Loading from './components/LoadingScreen';
 import Scene from './components/Scene';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import StaticFooter from './components/StaticFooter';
 import ResizeController from './components/ResizeController';
-
-
-const ORBIT_CONTROLS = false
 
 
 const AnimatedCircularProgress = animated(CircularProgressbar);
@@ -75,14 +72,10 @@ export default function App() {
 
   const headerRef = useRef()
 
-
   return (
     <div className="App">
       <Canvas colorManagement camera={{position:[0, 0, 0]}} gl={{antialias:true, alpha:true}}>
-        {ORBIT_CONTROLS && <OrbitControls/>}
         <ResizeController />
-        {/* <Stars radius={100} depth={40} count={5000} factor={4} saturation={0} fade /> */}
-        {/* <ContactShadows opacity={1} width={1} height={1} blur={1} far={10} resolution={256} frames={1} /> */}
 
         <Suspense fallback={null} >
           <Scene setShowHeader={setShowHeader} setShowFooter={setShowFooter} setScrollProgress={setScrollProgress} />
@@ -95,10 +88,6 @@ export default function App() {
           {/* <Bloom luminanceThreshold={0.2} luminanceSmoothing={0.6} height={60} intensity={0.06} /> */}
           {/* <Bloom luminanceThreshold={0.4} luminanceSmoothing={0.8} height={500} intensity={0.25} /> */}
           <Vignette eskil={false} offset={0.1} darkness={0.7} />
-          {/* <ChromaticAberration
-            blendFunction={BlendFunction.NORMAL}
-            offset={[0.001, 0.0001]}
-          /> */}
         </EffectComposer>
 
       </Canvas>
@@ -132,7 +121,7 @@ export default function App() {
       </animated.div>
 
       <animated.div className="loadingCover" style={{opacity:loadingCoverOpacity}}>
-
+        <Loading/>
       </animated.div>
     </div>
   );

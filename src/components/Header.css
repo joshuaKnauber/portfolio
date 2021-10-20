@@ -17,7 +17,6 @@
 
 .titleBig {
     font-weight: 800;
-    /* margin-top: 25vh; */
     margin-bottom: 40px;
     white-space: nowrap;
 }
@@ -52,14 +51,4 @@
     cursor: pointer;
     font-style: italic;
     color: #A563FA;
-}
-
-.scrollWarning {
-    position: absolute;
-    bottom: -20px;
-    text-align: center;
-    width: calc(100% - 40px);
-    font-size: 13px;
-    font-weight: 600;
-    color: rgb(252, 144, 81);
 }
